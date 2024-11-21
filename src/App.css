@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.slider {
+  position: relative;
+  margin: auto;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  /* padding: 24px; */
+  /* background-color: rgba(29, 33, 38, 0.1); */
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: rgba(61, 71, 81, 0.3);
+  border-image: initial;
+}
+
+
+.main-container {
+
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* align-content: center; */
+  align-items: center;
+}
