@@ -1,0 +1,30 @@
+[
+  {
+    "race": "Black or African American",
+    "selected": true
+  },
+  {
+    "race": "American Indian and Alaska Native",
+    "selected": true
+  },
+  {
+    "race": "Asian",
+    "selected": true
+  },
+  {
+    "race": "Native Hawaiian and Other Pacific Islander",
+    "selected": true
+  },
+  {
+    "race": "Two or More Races",
+    "selected": true
+  },
+  {
+    "race": "Hispanic or Latino",
+    "selected": true
+  },
+  {
+    "race": "White",
+    "selected": true
+  }
+]
