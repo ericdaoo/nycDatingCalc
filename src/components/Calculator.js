@@ -15,7 +15,7 @@ export default function Calculator() {
     const [raceData, setRaceData] = useState(false);
     function handlePull(newData) {
         setAgeData(newData[0])
-        setRaceData(newData)
+        setRaceData(newData[1])
     };
     const [gender, setGender] = useState(3);
     function handleGender(newGender) {
@@ -28,27 +28,28 @@ export default function Calculator() {
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
         setRace(
-            newRace.map((r) => {
-                if (r.race === race.race) {
-                return race;
+            race.map((r) => {
+                if (r.race === newRace.race) {
+                    return newRace;
                 } else {
-                return r;
+                    return r;
                 }
             })
         )
-        // setRace(newRace)
     };
 
 
     // Dating pool calculation logic
-    const test = []
-    let datingPoolCountTemp = 0
     const [datingPoolCount, setDatingPoolCount] = useState(0)
     function handleCount(newDatingPoolCount) {
         setDatingPoolCount(newDatingPoolCount)
     };
-
+  
     useEffect(() => {
+        const test = []
+        let datingPoolCountTemp = 0
+        let racePercent = 0;
+
         if(ageData != false) { 
         if(gender > 0) {
             ageData.map(ageCount => {
@@ -57,15 +58,27 @@ export default function Calculator() {
                     datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
                 }
             })
-            setDatingPoolCount(datingPoolCountTemp.toLocaleString('en-US'))
+            raceData.map(raceCount => {
+                race.map(r => {
+                    if(r.selected === true && r.race === raceCount.race) {
+                        racePercent += parseFloat(raceCount["decimal"])
+                    }
+                })
+            })
+            if (racePercent > 1) {racePercent = 1}
+            datingPoolCountTemp *= racePercent
+            setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
             }
-        
+            else {
+                datingPoolCountTemp = 0
+                setDatingPoolCount(datingPoolCountTemp)
+            }
         }
         else {
             datingPoolCountTemp = 0
             setDatingPoolCount(datingPoolCountTemp)
         }
-    }, [ ageData, gender, ageRange])
+    }, [ ageData, gender, ageRange, race])
 
 
 
@@ -74,9 +87,9 @@ export default function Calculator() {
         <div className="main-container">
         <p>{datingPoolCount} </p>
 
-            {/* <DataPull onPull={handlePull}/> */}
-            {/* <GenderButtons activeGender={gender} onGenderClick={handleGender}/> */}
-            {/* <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/> */}
+            <DataPull onPull={handlePull}/>
+            <GenderButtons activeGender={gender} onGenderClick={handleGender}/>
+            <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
             <Race activeRace={race} onRaceClick={handleRace}/>
             {/* <Test /> */}
 

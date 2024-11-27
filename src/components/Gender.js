@@ -14,6 +14,12 @@ function GenderButton({ value, backgroundColor, onClick }) {
             ,borderRadius: 28
             ,boxShadow: '0 2px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.02)'
             ,margin: "2px"
+
+            ,transition: "transform .2s, box-shadow .2s",
+                        '&:hover': {
+                            // transform: "scale(1.02) perspective(0px)",
+                            boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
+                          },
              
         }}
     >

@@ -4,15 +4,40 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 
-
-function CheckBox({ onClick, label, checked }){
+function CheckBox({ race, onClick, label, color }){
 return (
     <FormControlLabel
-    control={<Checkbox
-        checked={checked}
-        onClick={onClick}
-        sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-         />}
+        control=
+            {<Checkbox
+                checked={race.selected}
+                onChange={(event) => {
+                    onClick({
+                            ...race,
+                            selected: event.target.checked,
+                        });
+                    }}
+                sx={{
+                    padding: "2px"
+                    ,transition: "box-shadow .2s",
+                        '&:hover': {
+                            boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
+                          },
+                          '&:before': {
+                            boxShadow:
+                              '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
+                          }
+                    ,"& .MuiSvgIcon-root": { 
+                            fontSize: 28,
+                            color: {color},
+                        }
+                    // ,backgroundColor: "transparent"
+                    // ,"&.MuiButtonBase-root": {
+                    //     disableRipple: false
+                    // }
+                    // ,"&.MuiCheckbox-root": {
+                    // }
+                }}
+            />}
          label={label}
     >
      </FormControlLabel>
@@ -20,28 +45,12 @@ return (
 }
 
 export default function Race( { activeRace, onRaceClick } ) {
-    console.log(activeRace[0]['race'])
-
-      const handleClick = (event) => {
-        onRaceClick({
-            ...activeRace,
-            selected: event.target.checked,
-          });
-      };
-      
   return (
-    // <div>
         <FormGroup>
-      {activeRace.map((race) => (
-          <CheckBox key={race.race} label={race.race} checked={race.selected} 
-      onClick={handleClick}
-       />
-        // </li>
-      ))}
-    </FormGroup>
-    //   <CheckBox label={activeRace[0].race} checked={activeRace[0].selected} 
-    //   onClick={handleClick}
-    //    />
-
+        {activeRace.map((race) => (
+            <CheckBox key={race.race} race={race} label={race.race} color={race.color} onClick={onRaceClick}
+                />
+        ))}
+        </FormGroup>
   );
 }
