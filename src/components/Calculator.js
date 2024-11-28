@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
+import Box from '@mui/material/Box';
+
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+
+import WcIcon from '@mui/icons-material/Wc';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import GroupsIcon from '@mui/icons-material/Groups';
+import HeightIcon from '@mui/icons-material/Height';
+import PublicIcon from '@mui/icons-material/Public';
+import ExtensionIcon from '@mui/icons-material/Extension';
+
 import DataPull from "./DataPull"
 import GenderButtons from "./Gender"
 import AgeSlider from "./Age"
@@ -10,6 +24,14 @@ import Test from "./test"
 
 
 export default function Calculator() {
+
+
+    const [value, setValue] = React.useState("1");
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    }
+
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
     const [raceData, setRaceData] = useState(false);
@@ -88,11 +110,36 @@ export default function Calculator() {
         <p>{datingPoolCount} </p>
 
             <DataPull onPull={handlePull}/>
-            <GenderButtons activeGender={gender} onGenderClick={handleGender}/>
-            <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
-            <Race activeRace={race} onRaceClick={handleRace}/>
-            {/* <Test /> */}
 
+            <TabContext value={value} >
+                
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <TabList onChange={handleChange} variant="scrollable" scrollButtons="on">
+                <Tab label="Gender" value="1" icon={<WcIcon />}/>
+                <Tab label="Age" value="2" icon={<AccessTimeIcon />}/>
+                <Tab label="Height" value="3" icon={<HeightIcon />}/>
+                <Tab label="Race" value="4" icon={<GroupsIcon />}/>
+                <Tab label="Ethnicity" value="5" icon={<PublicIcon />}/>
+                <Tab label="Ancestry" value="6" icon={<ExtensionIcon />}/>
+
+            </TabList>
+            </Box>
+
+                <TabPanel value="1">
+                    <GenderButtons activeGender={gender} onGenderClick={handleGender}/>
+                </TabPanel>
+                <TabPanel value="2">
+                    <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
+                </TabPanel>
+                <TabPanel value="4">            
+                    <Race activeRace={race} onRaceClick={handleRace}/>
+                </TabPanel>
+                
+
+            </TabContext>
+            
+
+            {/* <Test /> */}
             
         </div>
 )

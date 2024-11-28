@@ -108,6 +108,9 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
     backgroundColor: '#29292D',
     height: 10,
   },
+  '& .MuiTabPanel-root': {
+    padding: 0,
+  },
   // ...theme.applyStyles('dark', {
   //   color: '#0a84ff',
   // }),
@@ -137,7 +140,7 @@ export default function AgeSlider({ ageRange, onSlide, activeGender }) {
   };
 
   return (
-    <Box sx={{ width: 300, margin: 5 }}>
+    <Box sx={{ width: 300, margin: 1, padding: 0}}>
       <CustomAgeSlider
         // aria-label="ios slider"
         // getAriaLabel={() => 'Age range'}
@@ -150,10 +153,6 @@ export default function AgeSlider({ ageRange, onSlide, activeGender }) {
         disableSwap
         activegender={activeGender}
       />
-
-{/* <DatingEconomy /> */}
-
     </Box>
-    
   );
 }
