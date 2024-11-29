@@ -30,10 +30,10 @@ function GenderButton({ value, backgroundColor, onClick }) {
 
 export default function GenderButtons({ activeGender, onGenderClick }) {
 
-    const [genderValue, setGenderValue] = useState(activeGender)
+    // const [genderValue, setGenderValue] = useState(activeGender)
     
-    const startingWomenButton = (genderValue === 1 || genderValue === 3) ? true:false
-    const startingMenButton = (genderValue === 1 || genderValue === 2) ? true:false
+    const startingWomenButton = (activeGender === 1 || activeGender === 3) ? true:false
+    const startingMenButton = (activeGender === 1 || activeGender === 2) ? true:false
 
     const [activeWomenButton, setActiveWomenButton] = useState(startingWomenButton);
     const [activeMenButton, setActiveMenButton] = useState(startingMenButton);
@@ -41,17 +41,17 @@ export default function GenderButtons({ activeGender, onGenderClick }) {
 // Note 1
     useEffect(() => {
         if (activeWomenButton && activeMenButton) {
-            setGenderValue(1)
+            onGenderClick(1)
         }
         else if (activeWomenButton && !activeMenButton) {
-            setGenderValue(3)
+            onGenderClick(3)
         }
         else if (!activeWomenButton && activeMenButton) {
-            setGenderValue(2)
+            onGenderClick(2)
         }
-        else if (!activeWomenButton && !activeMenButton) { setGenderValue(0)
+        else if (!activeWomenButton && !activeMenButton) { onGenderClick(0)
         }
-        onGenderClick(genderValue)
+        // onGenderClick(genderValue)
 
     },[handleClick])
 

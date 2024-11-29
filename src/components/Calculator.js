@@ -8,7 +8,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
 import WcIcon from '@mui/icons-material/Wc';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CakeIcon from '@mui/icons-material/Cake';
 import GroupsIcon from '@mui/icons-material/Groups';
 import HeightIcon from '@mui/icons-material/Height';
 import PublicIcon from '@mui/icons-material/Public';
@@ -113,14 +113,16 @@ export default function Calculator() {
 
             <TabContext value={value} >
                 
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} variant="scrollable" scrollButtons="on">
+            <Box sx={{ width: 1, borderBottom: 1, borderColor: 'divider' }}>
+            <TabList onChange={handleChange} style={{ overflow: "hidden" }}variant="scrollable" scrollButtons={true}  >
                 <Tab label="Gender" value="1" icon={<WcIcon />}/>
-                <Tab label="Age" value="2" icon={<AccessTimeIcon />}/>
+                {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
+                <Tab label="Age" value="2" icon={<CakeIcon />}/>
                 <Tab label="Height" value="3" icon={<HeightIcon />}/>
                 <Tab label="Race" value="4" icon={<GroupsIcon />}/>
                 <Tab label="Ethnicity" value="5" icon={<PublicIcon />}/>
                 <Tab label="Ancestry" value="6" icon={<ExtensionIcon />}/>
+                <Tab label="Test" value="10"/>
 
             </TabList>
             </Box>
@@ -134,12 +136,14 @@ export default function Calculator() {
                 <TabPanel value="4">            
                     <Race activeRace={race} onRaceClick={handleRace}/>
                 </TabPanel>
+                <TabPanel value="10">            
+                    <Test activeGender={gender} onGenderClick={handleGender}/>
+                </TabPanel>
                 
 
             </TabContext>
             
 
-            {/* <Test /> */}
             
         </div>
 )
