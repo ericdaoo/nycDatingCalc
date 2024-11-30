@@ -6,6 +6,7 @@ function GenderButton({ value, backgroundColor, onClick }) {
     return(
     <Button 
         onClick={onClick}
+        id={value}
         className="button"
         sx={{ width:100
             ,color: "white"
@@ -13,7 +14,7 @@ function GenderButton({ value, backgroundColor, onClick }) {
             // ,backgroundColor:{backgroundColor}
             ,borderRadius: 28
             ,boxShadow: '0 2px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.02)'
-            ,margin: "2px"
+            ,margin: "5px"
 
             ,transition: "transform .2s, box-shadow .2s",
                         '&:hover': {
@@ -56,10 +57,10 @@ export default function GenderButtons({ activeGender, onGenderClick }) {
     },[handleClick])
 
     function handleClick(event) {
-        if (event.target.innerText === "WOMEN") {
+        if (event.target.id === "Women") {
             setActiveWomenButton(activeWomenButton ? false : true)
         }
-        else if (event.target.innerText === "MEN") {
+        else if (event.target.id === "Men") {
             setActiveMenButton(activeMenButton ? false : true)
         }
     }

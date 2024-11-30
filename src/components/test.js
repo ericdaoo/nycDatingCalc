@@ -6,7 +6,8 @@ function GenderButton({ value, backgroundColor, onClick }) {
     return(
     <Button 
         onClick={onClick}
-        onTouchEnd={onClick}
+        id={value}
+        // onChange={onClick}
         className="button"
         sx={{ width:100
             ,color: "white"
@@ -34,11 +35,11 @@ export default function GenderButtons({ activeGender, onGenderClick }) {
 
     // const [genderValue, setGenderValue] = useState(activeGender)
     
-    const startingWomenButton = (activeGender === 1 || activeGender === 3) ? true:false
-    const startingMenButton = (activeGender === 1 || activeGender === 2) ? true:false
+    // const startingWomenButton = (activeGender === 1 || activeGender === 3) ? true:false
+    // const startingMenButton = (activeGender === 1 || activeGender === 2) ? true:false
 
-    const [activeWomenButton, setActiveWomenButton] = useState(startingWomenButton);
-    const [activeMenButton, setActiveMenButton] = useState(startingMenButton);
+    const [activeWomenButton, setActiveWomenButton] = useState(true);
+    const [activeMenButton, setActiveMenButton] = useState(true);
 
 // Note 1
     useEffect(() => {
@@ -58,10 +59,11 @@ export default function GenderButtons({ activeGender, onGenderClick }) {
     },[handleClick])
 
     function handleClick(event) {
-        if (event.target.innerText === "WOMEN") {
+        console.log(event.target.id)
+        if (event.target.id === "Women") {
             setActiveWomenButton(activeWomenButton ? false : true)
         }
-        else if (event.target.innerText === "MEN") {
+        else if (event.target.id === "Men") {
             setActiveMenButton(activeMenButton ? false : true)
         }
     }
