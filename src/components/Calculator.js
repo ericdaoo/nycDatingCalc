@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
+import TabScrollButton from '@mui/material/TabScrollButton';
 import TabPanel from '@mui/lab/TabPanel';
 
 import WcIcon from '@mui/icons-material/Wc';
@@ -12,7 +13,7 @@ import CakeIcon from '@mui/icons-material/Cake';
 import GroupsIcon from '@mui/icons-material/Groups';
 import HeightIcon from '@mui/icons-material/Height';
 import PublicIcon from '@mui/icons-material/Public';
-import ExtensionIcon from '@mui/icons-material/Extension';
+import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 
 import DataPull from "./DataPull"
 import GenderButtons from "./Gender"
@@ -107,24 +108,29 @@ export default function Calculator() {
 
     return (
         <div className="main-container">
-        <p>{datingPoolCount} </p>
+        <h1>{datingPoolCount} </h1>
 
             <DataPull onPull={handlePull}/>
 
             <TabContext value={value} >
                 
-            <Box sx={{ width: 1, borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} style={{ overflow: "hidden" }}variant="scrollable" scrollButtons={true}  >
-                <Tab label="Gender" value="1" icon={<WcIcon />}/>
-                {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
-                <Tab label="Age" value="2" icon={<CakeIcon />}/>
-                <Tab label="Height" value="3" icon={<HeightIcon />}/>
-                <Tab label="Race" value="4" icon={<GroupsIcon />}/>
-                <Tab label="Ethnicity" value="5" icon={<PublicIcon />}/>
-                <Tab label="Ancestry" value="6" icon={<ExtensionIcon />}/>
-                <Tab label="Test" value="10"/>
+            <Box sx={{ width: "120%", borderBottom: 1, borderColor: 'divider', display:"flex", justifyContent:"center" }}>
+                <TabList 
+                    onChange={handleChange} style={{ overflow: "hidden" }}
+                    variant="scrollable" scrollButtons={true} allowScrollButtonsMobile={true}  
+                    //TabIndicatorProps={{style: {background:'#89F0DD'}}}
+                    >
 
-            </TabList>
+                    <Tab label="Gender" value="1" icon={<WcIcon />} style={{ minWidth: 50 }}/>
+                    {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
+                    <Tab label="Age" value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}/>
+                    <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }}/>
+                    <Tab label="Race" value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}/>
+                    <Tab label="Ethnicity" value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}/>
+                    <Tab label="Ancestry" value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}/>
+                    <Tab label="Test" value="10"style={{ minWidth: 50 }}/>
+
+                </TabList>
             </Box>
 
                 <TabPanel value="1">
