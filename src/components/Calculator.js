@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
-import TabScrollButton from '@mui/material/TabScrollButton';
 import TabPanel from '@mui/lab/TabPanel';
 
 import WcIcon from '@mui/icons-material/Wc';
@@ -19,7 +18,9 @@ import DataPull from "./DataPull"
 import GenderButtons from "./Gender"
 import AgeSlider from "./Age"
 import Race from "./Race"
-import raceSupport from "../support_files/race.json"
+import raceSupport from "../support_files/raceSupport.json"
+import Ethnicity from "./Ethnicity"
+import ethnicitySupport from "../support_files/ethnicitySupport.json"
 
 import Test from "./test"
 
@@ -36,9 +37,11 @@ export default function Calculator() {
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
     const [raceData, setRaceData] = useState(false);
+    const [ethnicityData, setEthnicityData] = useState(false);
     function handlePull(newData) {
         setAgeData(newData[0])
         setRaceData(newData[1])
+        setEthnicityData(newData[2])
     };
     const [gender, setGender] = useState(3);
     function handleGender(newGender) {
@@ -59,6 +62,33 @@ export default function Calculator() {
                 }
             })
         )
+    };
+    const [ethnicity, setEthnicity] = useState(ethnicitySupport);
+    function handleEthnicity(newEthnicity) {
+        console.log(newEthnicity)
+        setEthnicity(
+            ethnicity.map((e) => {
+                if (e.ethnicity === newEthnicity.ethnicity) {
+                    return newEthnicity;
+                } else {
+                    return e;
+                }
+            })
+        )
+    };
+
+    const [ethnicityGroup, setEthnicityGroup] = useState(ethnicitySupport);
+    function handleEthnicityGroup(newEthnicityGroup) {
+        console.log(newEthnicityGroup)
+        // setEthnicity(
+        //     ethnicity.map((e) => {
+        //         if (e.ethnicity === newEthnicity.ethnicity) {
+        //             return newEthnicity;
+        //         } else {
+        //             return e;
+        //         }
+        //     })
+        // )
     };
 
 
@@ -126,6 +156,7 @@ export default function Calculator() {
                     <Tab label="Age" value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}/>
                     <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }}/>
                     <Tab label="Race" value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}/>
+            
                     <Tab label="Ethnicity" value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}/>
                     <Tab label="Ancestry" value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}/>
                     <Tab label="Test" value="10"style={{ minWidth: 50 }}/>
@@ -142,6 +173,9 @@ export default function Calculator() {
                 <TabPanel value="4">            
                     <Race activeRace={race} onRaceClick={handleRace}/>
                 </TabPanel>
+                <TabPanel value="5">            
+                    <Ethnicity activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity}/>
+                </TabPanel>
                 <TabPanel value="10">            
                     <Test activeGender={gender} onGenderClick={handleGender}/>
                 </TabPanel>
@@ -154,9 +188,4 @@ export default function Calculator() {
         </div>
 )
 
-
-
-// const test = <DataPull />
-// const test2 = test.map(row => <li>{row.age}, {row.total_count}, {row.male_count}, {row.female_count}</li>)
-// console.log(test2)
 };

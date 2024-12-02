@@ -9,6 +9,7 @@ return (
     <FormControlLabel
         control=
             {<Checkbox
+                id={race.race}
                 checked={race.selected}
                 onChange={(event) => {
                     onClick({

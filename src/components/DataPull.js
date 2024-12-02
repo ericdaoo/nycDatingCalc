@@ -14,7 +14,7 @@ export default function DataPull({ onPull }) {
         const sheetIDs = [
                         '1845772824' // Gender & Age
                         ,'776831969' // Race
-                        // ,'1378955350' // Ethnicity
+                        ,'1378955350' // Ethnicity
                         // ,'1191707471' // Height
                         // ,'481252969' // Income
         ]
