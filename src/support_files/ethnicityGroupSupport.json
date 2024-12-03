@@ -1,0 +1,42 @@
+[
+  {
+    "ethnicity_group": "Native American",
+    "selected": true,
+    "color": "#FAEDA5"
+  },
+  {
+    "ethnicity_group": "Asian",
+    "selected": true,
+    "color": "#ffb7c3"
+  },
+  {
+    "ethnicity_group": "Pacific Islander",
+    "selected": true,
+    "color": "#89F0DD"
+  },
+  {
+    "ethnicity_group": "Black or African American",
+    "selected": true,
+    "color": "#C5DCA0"
+  },
+  {
+    "ethnicity_group": "Middle Eastern or North African",
+    "selected": true,
+    "color": "#66C684"
+  },
+  {
+    "ethnicity_group": "Other",
+    "selected": true,
+    "color": "#c5b4e3"
+  },
+  {
+    "ethnicity_group": "Latino",
+    "selected": true,
+    "color": "#ffdab9"
+  },
+  {
+    "ethnicity_group": "White",
+    "selected": true,
+    "color": "#b4e1ff"
+  }
+]

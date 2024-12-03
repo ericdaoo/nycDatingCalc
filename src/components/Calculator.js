@@ -21,6 +21,7 @@ import Race from "./Race"
 import raceSupport from "../support_files/raceSupport.json"
 import Ethnicity from "./Ethnicity"
 import ethnicitySupport from "../support_files/ethnicitySupport.json"
+import ethnicityGroupSupport from "../support_files/ethnicityGroupSupport.json"
 
 import Test from "./test"
 
@@ -65,8 +66,11 @@ export default function Calculator() {
     };
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
     function handleEthnicity(newEthnicity) {
+
         console.log(newEthnicity)
-        setEthnicity(
+        
+        let x = new Promise((resolve) => {
+            setEthnicity(
             ethnicity.map((e) => {
                 if (e.ethnicity === newEthnicity.ethnicity) {
                     return newEthnicity;
@@ -75,20 +79,45 @@ export default function Calculator() {
                 }
             })
         )
-    };
+        resolve()
+        }
+        )
 
-    const [ethnicityGroup, setEthnicityGroup] = useState(ethnicitySupport);
+        x.then(() => {
+            const allChildrenSelected = ethnicity.every(
+                (e) => e.selected === true)
+                console.log(allChildrenSelected);
+        })
+
+ 
+
+        
+
+     
+        // console.log(allChildrenSelected)
+    };
+    const [ethnicityGroup, setEthnicityGroup] = useState(ethnicityGroupSupport);
     function handleEthnicityGroup(newEthnicityGroup) {
         console.log(newEthnicityGroup)
-        // setEthnicity(
-        //     ethnicity.map((e) => {
-        //         if (e.ethnicity === newEthnicity.ethnicity) {
-        //             return newEthnicity;
-        //         } else {
-        //             return e;
-        //         }
-        //     })
-        // )
+        setEthnicityGroup(
+            ethnicityGroup.map((g) => {
+                if (g.ethnicity_group === newEthnicityGroup.ethnicity_group) {
+                    return newEthnicityGroup;
+                } else {
+                    return g;
+                }
+            })
+        )
+        setEthnicity(
+            ethnicity.map((e) => {
+                if (e.ethnicity_group === newEthnicityGroup.ethnicity_group) {
+                    e.selected = e.selected ? false:true
+                    return e;
+                } else {
+                    return e;
+                }
+            })
+        )
     };
 
 
@@ -174,7 +203,9 @@ export default function Calculator() {
                     <Race activeRace={race} onRaceClick={handleRace}/>
                 </TabPanel>
                 <TabPanel value="5">            
-                    <Ethnicity activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity}/>
+                    <Ethnicity 
+                        activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity} 
+                        activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup} />
                 </TabPanel>
                 <TabPanel value="10">            
                     <Test activeGender={gender} onGenderClick={handleGender}/>
