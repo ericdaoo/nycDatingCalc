@@ -57,6 +57,7 @@ return (
             <Checkbox
                 id={group.ethnicity_group}
                 checked={group.selected}
+                indeterminate={(group.selected === "indeterminate") ? true:false }
                 onChange={(event) => {
                     onClick({
                             ethnicity_group: group.ethnicity_group,

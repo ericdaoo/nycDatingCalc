@@ -28,13 +28,6 @@ import Test from "./test"
 
 export default function Calculator() {
 
-
-    const [value, setValue] = React.useState("1");
-
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    }
-
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
     const [raceData, setRaceData] = useState(false);
@@ -44,14 +37,17 @@ export default function Calculator() {
         setRaceData(newData[1])
         setEthnicityData(newData[2])
     };
+
     const [gender, setGender] = useState(3);
     function handleGender(newGender) {
         setGender(newGender)
     };
+
     const [ageRange, setAgeRange] = useState([26,32]);
     function handleAge(newAgeRange) {
         setAgeRange(newAgeRange)
     };
+
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
         setRace(
@@ -64,13 +60,12 @@ export default function Calculator() {
             })
         )
     };
+
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
     function handleEthnicity(newEthnicity) {
-
-        console.log(newEthnicity)
-        
-        let x = new Promise((resolve) => {
-            setEthnicity(
+        // Update ethnicity checkbox.
+        // Note 1
+        const ethnicityTemp = 
             ethnicity.map((e) => {
                 if (e.ethnicity === newEthnicity.ethnicity) {
                     return newEthnicity;
@@ -78,27 +73,35 @@ export default function Calculator() {
                     return e;
                 }
             })
-        )
-        resolve()
+        setEthnicity(ethnicityTemp)
+        // Obtain only ethnicities in ethnicity group of interest.
+        const ethnicityGroupTemp = [] 
+            ethnicityTemp.map((e) => {
+                if (e.ethnicity_group === newEthnicity.ethnicity_group) {
+                    return ethnicityGroupTemp.push(e);
+                }
+            })
+        // Determine whether or not all, none, or some ethnicity check boxes of an ethnicity group are selected.
+        const allChildrenSelected = () => {
+            if(ethnicityGroupTemp.every((e) => e.selected === true)) { return true}
+            else if(ethnicityGroupTemp.every((e) => e.selected === false)) { return false}
+            else {return "indeterminate"}
         }
+        // Update ethnicityGroup selected value based on if the ethnicity that was just selected made it so all, none, or some of the ethnicity group's ethnicity boxes were selected.
+        setEthnicityGroup(
+            ethnicityGroup.map((g) => {
+                if (g.ethnicity_group === newEthnicity.ethnicity_group) {
+                    return {...g
+                    ,selected: allChildrenSelected()};
+                } else {
+                    return g;
+                }
+            })
         )
+    }
 
-        x.then(() => {
-            const allChildrenSelected = ethnicity.every(
-                (e) => e.selected === true)
-                console.log(allChildrenSelected);
-        })
-
- 
-
-        
-
-     
-        // console.log(allChildrenSelected)
-    };
     const [ethnicityGroup, setEthnicityGroup] = useState(ethnicityGroupSupport);
     function handleEthnicityGroup(newEthnicityGroup) {
-        console.log(newEthnicityGroup)
         setEthnicityGroup(
             ethnicityGroup.map((g) => {
                 if (g.ethnicity_group === newEthnicityGroup.ethnicity_group) {
@@ -111,7 +114,7 @@ export default function Calculator() {
         setEthnicity(
             ethnicity.map((e) => {
                 if (e.ethnicity_group === newEthnicityGroup.ethnicity_group) {
-                    e.selected = e.selected ? false:true
+                    e.selected = newEthnicityGroup.selected ? true:false
                     return e;
                 } else {
                     return e;
@@ -163,7 +166,11 @@ export default function Calculator() {
     }, [ ageData, gender, ageRange, race])
 
 
-
+    // This state is used by the TabContext component that controls the menu tabs
+    const [tabValue, setTabValue] = React.useState("1");
+    const handleChange = (event, newValue) => {
+        setTabValue(newValue);
+    }
 
     return (
         <div className="main-container">
@@ -171,7 +178,7 @@ export default function Calculator() {
 
             <DataPull onPull={handlePull}/>
 
-            <TabContext value={value} >
+            <TabContext value={tabValue} >
                 
             <Box sx={{ width: "120%", borderBottom: 1, borderColor: 'divider', display:"flex", justifyContent:"center" }}>
                 <TabList 
@@ -220,3 +227,6 @@ export default function Calculator() {
 )
 
 };
+
+
+//Note1: The reason we need this ethnicityTemp value is because, before, I was calling setEthnicity directly and then trying to access that updated ethnicity field in the function below that checks to see if every ethnicity in a particuar ethnicityGroup was selected. Since states are update immediately, the second function wasn't working because it was still receiving the old ethnicity state before the update. By using this ethnicityTemp value, we can immediately use it in the second function since the assignment is sychronously defined first before the function uses it.
