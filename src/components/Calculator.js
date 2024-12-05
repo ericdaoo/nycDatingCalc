@@ -63,7 +63,7 @@ export default function Calculator() {
 
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
     function handleEthnicity(newEthnicity) {
-        // Update ethnicity checkbox.
+        // First update selected ethnicity checkbox.
         // Note 1
         const ethnicityTemp = 
             ethnicity.map((e) => {
@@ -81,18 +81,24 @@ export default function Calculator() {
                     return ethnicityGroupTemp.push(e);
                 }
             })
-        // Determine whether or not all, none, or some ethnicity check boxes of an ethnicity group are selected.
+        // Determine whether all, none, or some ethnicity check boxes of an ethnicity group are selected.
         const allChildrenSelected = () => {
-            if(ethnicityGroupTemp.every((e) => e.selected === true)) { return true}
-            else if(ethnicityGroupTemp.every((e) => e.selected === false)) { return false}
+            if(ethnicityGroupTemp.every((e) => e.selected === true)) {return true}
+            else if(ethnicityGroupTemp.every((e) => e.selected === false)) {return false}
             else {return "indeterminate"}
         }
-        // Update ethnicityGroup selected value based on if the ethnicity that was just selected made it so all, none, or some of the ethnicity group's ethnicity boxes were selected.
+        // Update ethnicityGroup selected value based on if the ethnicity that was just selected made it so that all, none, or some of the ethnicity group's ethnicity boxes were selected.
         setEthnicityGroup(
             ethnicityGroup.map((g) => {
                 if (g.ethnicity_group === newEthnicity.ethnicity_group) {
-                    return {...g
-                    ,selected: allChildrenSelected()};
+                    if(allChildrenSelected() === true || allChildrenSelected() === false)  
+                        {return {...g
+                        ,selected: allChildrenSelected()
+                        ,indeterminate: false};
+                        }
+                    else {return {...g
+                        ,indeterminate: true}
+                    }
                 } else {
                     return g;
                 }

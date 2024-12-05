@@ -51,13 +51,13 @@ function CheckBoxParent({ group, onClick, label, color, children, onClickChild }
     // console.log(group)
     // console.log(group.children.map((child) => (child)))
 return (
-    <div>
+    <div className="checkBoxParent">
     <FormControlLabel
         control={
             <Checkbox
                 id={group.ethnicity_group}
                 checked={group.selected}
-                indeterminate={(group.selected === "indeterminate") ? true:false }
+                indeterminate={group.indeterminate}
                 onChange={(event) => {
                     onClick({
                             ethnicity_group: group.ethnicity_group,
@@ -91,7 +91,7 @@ return (
     >
      </FormControlLabel>
 
-     <div>
+     <div className="checkBoxChild">
             {children.map((child) => (
             <CheckBoxChild 
                 key={child.ethnicity} 
@@ -110,7 +110,7 @@ return (
 }
 
 export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEthnicityGroup, onEthnicityGroupClick } ) {
-
+    // Prepare data by organizing ethnicities into respective groups
     const organizedEthnicity = []
     const ethnicityOrganizer = activeEthnicityGroup.map((group) => {
         const ethnicityChildren = []
@@ -125,7 +125,7 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
     // console.log(organizedEthnicity)
 
     return (
-        <div>
+        <div className="checkBoxContainer">
             {organizedEthnicity.map((group) => (
             <CheckBoxParent 
                 key={group.ethnicity_group} 
@@ -135,33 +135,9 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
                 onClick={onEthnicityGroupClick}
 
                 children={group.children}
-                // keyChild={ethnicity.ethnicity} 
-                // ethnicity={ethnicity} 
-                // labelChild={ethnicity.ethnicity} 
-                // colorChild={ethnicity.color} 
                 onClickChild={onEthnicityClick}
             />
         ))}
-        {/* {activeEthnicity.map((ethnicity) => (
-            <CheckBox 
-                key={ethnicity.ethnicity} 
-                ethnicity={ethnicity} 
-                ethnicity_group={ethnicity.ethnicity_group}
-                label={ethnicity.ethnicity} 
-                color={ethnicity.color} 
-                onClick={onEthnicityClick}
-            />
-        ))} */}
-        {/* {activeEthnicity.map((ethnicity) => (
-            <CheckBox 
-                key={ethnicity.ethnicity} 
-                ethnicity={ethnicity} 
-                ethnicity_group={ethnicity.ethnicity_group}
-                label={ethnicity.ethnicity} 
-                color={ethnicity.color} 
-                onClick={onEthnicityClick}
-            />
-        ))} */}
         </div>
   );
 }
