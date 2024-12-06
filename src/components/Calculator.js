@@ -179,6 +179,7 @@ export default function Calculator() {
     }
 
     return (
+        <div className="wrapper">
         <div className="main-container">
         <h1>{datingPoolCount} </h1>
 
@@ -186,7 +187,7 @@ export default function Calculator() {
 
             <TabContext value={tabValue} >
                 
-            <Box sx={{ width: "120%", borderBottom: 1, borderColor: 'divider', display:"flex", justifyContent:"center" }}>
+            <Box sx={{ width: "100%", borderBottom: 1, borderColor: 'divider', display:"flex", justifyContent:"center" }}>
                 <TabList 
                     onChange={handleChange} style={{ overflow: "hidden" }}
                     variant="scrollable" scrollButtons={true} allowScrollButtonsMobile={true}  
@@ -215,7 +216,7 @@ export default function Calculator() {
                 <TabPanel value="4">            
                     <Race activeRace={race} onRaceClick={handleRace}/>
                 </TabPanel>
-                <TabPanel value="5">            
+                <TabPanel value="5" sx={{padding:"0"}}    >        
                     <Ethnicity 
                         activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity} 
                         activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup} />
@@ -228,7 +229,7 @@ export default function Calculator() {
             </TabContext>
             
 
-            
+            </div>
         </div>
 )
 

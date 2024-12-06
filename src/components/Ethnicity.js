@@ -125,6 +125,7 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
     // console.log(organizedEthnicity)
 
     return (
+        <div className="checkBoxContainerParent"> 
         <div className="checkBoxContainer">
             {organizedEthnicity.map((group) => (
             <CheckBoxParent 
@@ -138,6 +139,7 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
                 onClickChild={onEthnicityClick}
             />
         ))}
+        </div>
         </div>
   );
 }
