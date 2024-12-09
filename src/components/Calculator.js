@@ -48,9 +48,10 @@ export default function Calculator() {
         setAgeRange(newAgeRange)
     };
 
+    const [raceAll, setRaceAll] = useState(true);
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
-        setRace(
+        const raceTemp = 
             race.map((r) => {
                 if (r.race === newRace.race) {
                     return newRace;
@@ -58,7 +59,10 @@ export default function Calculator() {
                     return r;
                 }
             })
-        )
+        setRace(raceTemp)
+
+        if(raceTemp.every((e) => e.selected === true)) {setRaceAll(true)}
+        else {setRaceAll(false)}
     };
 
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
@@ -129,6 +133,19 @@ export default function Calculator() {
         )
     };
 
+    // Helper Functions
+    function resetter (formName, active) {
+        if(formName === 'race') {
+            setRaceAll(active)
+            setRace(
+                race.map((r) => {
+                    return {...r, selected: active}
+                })
+            )
+        }
+
+    }
+
 
     // Dating pool calculation logic
     const [datingPoolCount, setDatingPoolCount] = useState(0)
@@ -194,7 +211,9 @@ export default function Calculator() {
                     //TabIndicatorProps={{style: {background:'#89F0DD'}}}
                     >
 
-                    <Tab label="Gender" value="1" icon={<WcIcon />} style={{ minWidth: 50 }}/>
+                    <Tab label="Gender" value="1" icon={<WcIcon />} style={{ minWidth: 50
+                    // ,color:'#89F0DD'
+                }}/>
                     {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
                     <Tab label="Age" value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}/>
                     <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }}/>
@@ -214,7 +233,7 @@ export default function Calculator() {
                     <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
                 </TabPanel>
                 <TabPanel value="4">            
-                    <Race activeRace={race} onRaceClick={handleRace}/>
+                    <Race activeRace={race} onRaceClick={handleRace} activeRaceAll={raceAll} resetter={resetter}/>
                 </TabPanel>
                 <TabPanel value="5" sx={{padding:"0"}}    >        
                     <Ethnicity 
@@ -225,7 +244,6 @@ export default function Calculator() {
                     <Test activeGender={gender} onGenderClick={handleGender}/>
                 </TabPanel>
                 
-
             </TabContext>
             
 

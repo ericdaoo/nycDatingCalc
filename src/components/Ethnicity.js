@@ -19,12 +19,12 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
                     });
                 }}
             sx={{
-                padding: "2px"
-                ,transition: "box-shadow .2s",
-                    '&:hover': {
+                padding: "0px 0 0 0",
+                transition: "box-shadow .2s"
+                ,'&:hover': {
                         boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
                     },
-                    '&:before': {
+                '&:before': {
                         boxShadow:
                         '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
                     }
@@ -32,6 +32,7 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
                         fontSize: 28,
                         color: {color},
                     }
+        
                 // ,backgroundColor: "transparent"
                 // ,"&.MuiButtonBase-root": {
                 //     disableRipple: false
@@ -40,6 +41,12 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
                 // }
             }}
         />}
+        sx={{
+            padding: "12px 0 0 0",
+        "& .MuiTypography-root": {
+            lineHeight: "1.3"
+          }
+        }}
     label={label}
     >
     </FormControlLabel>
@@ -48,8 +55,6 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
 
 
 function CheckBoxParent({ group, onClick, label, color, children, onClickChild }){
-    // console.log(group)
-    // console.log(group.children.map((child) => (child)))
 return (
     <div className="checkBoxParent">
     <FormControlLabel
@@ -110,7 +115,7 @@ return (
 }
 
 export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEthnicityGroup, onEthnicityGroupClick } ) {
-    // Prepare data by organizing ethnicities into respective groups
+    // Prepare data by organizing ethnicities into respective groups and inserting those nested objects into an array.
     const organizedEthnicity = []
     const ethnicityOrganizer = activeEthnicityGroup.map((group) => {
         const ethnicityChildren = []
@@ -122,8 +127,7 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
         organizedEthnicity.push({...group, "children": ethnicityChildren})
     }
     );
-    // console.log(organizedEthnicity)
-
+    // First we loop through each ethnicity group and provide both ethnicity group props and the ethnicity children props.
     return (
         <div className="checkBoxContainerParent"> 
         <div className="checkBoxContainer">
