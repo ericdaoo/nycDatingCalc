@@ -17,6 +17,7 @@ export default function DataPull({ onPull }) {
                         ,'1378955350' // Ethnicity
                         // ,'1191707471' // Height
                         // ,'481252969' // Income
+                        ,'321177856' // Ancestry
         ]
 
         const responses = [];
@@ -40,7 +41,7 @@ export default function DataPull({ onPull }) {
                 responses.map((p) => 
                     Papa.parse(p.data, {
                     header: true,
-                    skipEmptyLines: true,
+                    skipEmptyLines: 'greedy',
                     complete: (results) => {
                         const data = results.data;
                         dataSet.push(data)

@@ -1,0 +1,777 @@
+[
+    {
+      "ancestryGroup": "American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Blackfeet Tribe of the Blackfeet Indian Reservation of Montana",
+      "selected": true},
+    {
+      "ancestryGroup": "American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Cherokee",
+      "selected": true},
+    {
+      "ancestryGroup": "Central American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Mexican Indian ",
+      "selected": true},
+    {
+      "ancestryGroup": "Central American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Aztec",
+      "selected": true},
+    {
+      "ancestryGroup": "South American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Ecuadorian Indian",
+      "selected": true},
+    {
+      "ancestryGroup": "South American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Guyanese South American Indian",
+      "selected": true},
+    {
+      "ancestryGroup": "South American Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Inca",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Taino",
+      "selected": true},
+    {
+      "ancestryGroup": "Mesoamerican Indian",
+      "color": "#FAEDA5",
+      "ancestry": "Maya",
+      "selected": true},
+    {
+      "ancestryGroup": "East Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Chinese",
+      "selected": true},
+    {
+      "ancestryGroup": "East Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Japanese",
+      "selected": true},
+    {
+      "ancestryGroup": "East Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Korean",
+      "selected": true},
+    {
+      "ancestryGroup": "East Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Taiwanese",
+      "selected": true},
+    {
+      "ancestryGroup": "Central Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Afghan",
+      "selected": true},
+    {
+      "ancestryGroup": "Central Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Kazakh",
+      "selected": true},
+    {
+      "ancestryGroup": "Central Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Kyrgyz",
+      "selected": true},
+    {
+      "ancestryGroup": "Central Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Tajik",
+      "selected": true},
+    {
+      "ancestryGroup": "Central Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Uzbek",
+      "selected": true},
+    {
+      "ancestryGroup": "South Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Indian",
+      "selected": true},
+    {
+      "ancestryGroup": "South Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Bangladeshi",
+      "selected": true},
+    {
+      "ancestryGroup": "South Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Nepalese",
+      "selected": true},
+    {
+      "ancestryGroup": "South Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Pakistani",
+      "selected": true},
+    {
+      "ancestryGroup": "South Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Sikh",
+      "selected": true},
+    {
+      "ancestryGroup": "South Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Sri Lankan",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Burmese",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Cambodian",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Filipino",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Indonesian",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Malaysian",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Singaporean",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Thai",
+      "selected": true},
+    {
+      "ancestryGroup": "Southeast Asian",
+      "color": "#ffb7c3",
+      "ancestry": "Vietnamese",
+      "selected": true},
+    {
+      "ancestryGroup": "Polynesian",
+      "color": "#89F0DD",
+      "ancestry": "Native Hawaiian",
+      "selected": true},
+    {
+      "ancestryGroup": "Polynesian",
+      "color": "#89F0DD",
+      "ancestry": "Samoan",
+      "selected": true},
+    {
+      "ancestryGroup": "Micronesian",
+      "color": "#89F0DD",
+      "ancestry": "Chamorro",
+      "selected": true},
+    {
+      "ancestryGroup": "African American",
+      "color": "#C5DCA0",
+      "ancestry": "African American",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Burkinabe",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Cameroonian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Congolese",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Ethiopian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Gambian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Ghanaian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Guinean",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Ivoirian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Kenyan",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Liberian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Malian",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Nigerian (Nigeria)",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Senegalese",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Sierra Leonean",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "South African",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Sudanese",
+      "selected": true},
+    {
+      "ancestryGroup": "Sub-Saharan African",
+      "color": "#C5DCA0",
+      "ancestry": "Togolese",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Antiguan and Barbudan",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Bahamian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Barbadian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Dominica Islander",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Grenadian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Haitian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Jamaican",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Kittian and Nevisian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "St. Lucian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Trinidadian and Tobagonian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "U.S. Virgin Islander",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "Vincentian",
+      "selected": true},
+    {
+      "ancestryGroup": "Caribbean",
+      "color": "#c5b4e3",
+      "ancestry": "West Indian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin North American",
+      "color": "#ffdab9",
+      "ancestry": "Mexican",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Belizean",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Costa Rican",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Guatemalan",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Honduran",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Nicaraguan",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Panamanian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Salvadoran",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Central American",
+      "color": "#ffdab9",
+      "ancestry": "Garifuna",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Argentinean",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Brazilian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Bolivian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Chilean",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Colombian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Ecuadorian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Guyanese",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Paraguayan",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Peruvian",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Uruguayan",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin South American",
+      "color": "#ffdab9",
+      "ancestry": "Venezuelan",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Caribbean Hispanic",
+      "color": "#ffdab9",
+      "ancestry": "Cuban",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Caribbean Hispanic",
+      "color": "#ffdab9",
+      "ancestry": "Dominican",
+      "selected": true},
+    {
+      "ancestryGroup": "Latin Caribbean Hispanic",
+      "color": "#ffdab9",
+      "ancestry": "Puerto Rican",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Albanian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Armenian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Austrian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Azerbaijani",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Belarusian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Belgian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Bosnian and Herzegovinian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "British",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Bulgarian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Croatian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Cypriot",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Czech",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Danish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Dutch",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "English",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Estonian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Finnish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "French",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Georgian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "German",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Greek",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Hungarian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Irish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Italian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Kosovan",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Latvian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Lithuanian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Macedonian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Maltese",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Moldovan",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Montenegrin",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Norwegian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Polish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Portuguese",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Romanian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Russian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Scandinavian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Scots-Irish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Scottish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Serbian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Slavic",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Slovak",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Slovenian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Spaniard",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Swedish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Swiss",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Turkish",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Ukrainian",
+      "selected": true},
+    {
+      "ancestryGroup": "European",
+      "color": "#b4e1ff",
+      "ancestry": "Welsh",
+      "selected": true},
+    {
+      "ancestryGroup": "Other White",
+      "color": "#b4e1ff",
+      "ancestry": "Australian",
+      "selected": true},
+    {
+      "ancestryGroup": "Other White",
+      "color": "#b4e1ff",
+      "ancestry": "Canadian",
+      "selected": true},
+    {
+      "ancestryGroup": "Other White",
+      "color": "#b4e1ff",
+      "ancestry": "French Canadian",
+      "selected": true},
+    {
+      "ancestryGroup": "Other White",
+      "color": "#b4e1ff",
+      "ancestry": "New Zealander",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Algerian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Arab",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Egyptian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Iranian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Iraqi",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Israeli",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Jordanian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Lebanese",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Moroccan",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Palestinian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Syrian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Tunisian",
+      "selected": true},
+    {
+      "ancestryGroup": "Middle Eastern or North African",
+      "color": "#66C684",
+      "ancestry": "Yemeni",
+      "selected": true}
+  ]

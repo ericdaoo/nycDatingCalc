@@ -30,12 +30,14 @@ export default function Calculator() {
 
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
-    const [raceData, setRaceData] = useState(false);
-    const [ethnicityData, setEthnicityData] = useState(false);
+    const [raceData, setRaceData] = useState();
+    const [ethnicityData, setEthnicityData] = useState();
+    const [ancestryData, setAncestryData] = useState();
     function handlePull(newData) {
         setAgeData(newData[0])
         setRaceData(newData[1])
         setEthnicityData(newData[2])
+        setAncestryData(newData[3])
     };
 
     const [gender, setGender] = useState(3);
@@ -132,6 +134,8 @@ export default function Calculator() {
             })
         )
     };
+
+    // const [ancestry, setAncestry] = useState(ancestrySupport);
 
     // Helper Functions
     function resetter (formName, active) {

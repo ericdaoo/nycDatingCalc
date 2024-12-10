@@ -19,15 +19,15 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
                     });
                 }}
             sx={{
-                padding: "0px 0 0 0",
-                transition: "box-shadow .2s"
-                ,'&:hover': {
-                        boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
-                    },
-                '&:before': {
-                        boxShadow:
-                        '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
-                    }
+                padding: "0px 0 0 0"
+                // transition: "box-shadow .2s"
+                // ,'&:hover': {
+                //         boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
+                //     },
+                // '&:before': {
+                //         boxShadow:
+                //         '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
+                //     }
                 ,"& .MuiSvgIcon-root": { 
                         fontSize: 28,
                         color: {color},
@@ -72,14 +72,14 @@ return (
                     }}
                 sx={{
                     padding: "2px"
-                    ,transition: "box-shadow .2s",
-                        '&:hover': {
-                            boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
-                          },
-                          '&:before': {
-                            boxShadow:
-                              '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
-                          }
+                    // ,transition: "box-shadow .2s",
+                    //     '&:hover': {
+                    //         boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
+                    //       },
+                    //       '&:before': {
+                    //         boxShadow:
+                    //           '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
+                    //       }
                     ,"& .MuiSvgIcon-root": { 
                             fontSize: 28,
                             color: {color},
