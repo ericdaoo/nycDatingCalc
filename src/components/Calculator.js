@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import Tab from '@mui/material/Tab';
@@ -50,9 +51,12 @@ export default function Calculator() {
         setAgeRange(newAgeRange)
     };
 
+    const [activeEthnicityTab, setActiveEthnicityTab] = useState(1)
+
     const [raceAll, setRaceAll] = useState(true);
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
+        setActiveEthnicityTab(1)
         const raceTemp = 
             race.map((r) => {
                 if (r.race === newRace.race) {
@@ -67,8 +71,10 @@ export default function Calculator() {
         else {setRaceAll(false)}
     };
 
+    const [ethnicityAll, setEthnicityAll] = useState(true);
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
     function handleEthnicity(newEthnicity) {
+        setActiveEthnicityTab(2)
         // First update selected ethnicity checkbox.
         // Note 1
         const ethnicityTemp = 
@@ -80,6 +86,10 @@ export default function Calculator() {
                 }
             })
         setEthnicity(ethnicityTemp)
+
+        if(ethnicityTemp.every((e) => e.selected === true)) {setEthnicityAll(true)}
+        else {setEthnicityAll(false)}
+
         // Obtain only ethnicities in ethnicity group of interest.
         const ethnicityGroupTemp = [] 
             ethnicityTemp.map((e) => {
@@ -114,6 +124,7 @@ export default function Calculator() {
 
     const [ethnicityGroup, setEthnicityGroup] = useState(ethnicityGroupSupport);
     function handleEthnicityGroup(newEthnicityGroup) {
+        setActiveEthnicityTab(2)
         setEthnicityGroup(
             ethnicityGroup.map((g) => {
                 if (g.ethnicity_group === newEthnicityGroup.ethnicity_group) {
@@ -123,7 +134,7 @@ export default function Calculator() {
                 }
             })
         )
-        setEthnicity(
+        const ethnicityTemp = 
             ethnicity.map((e) => {
                 if (e.ethnicity_group === newEthnicityGroup.ethnicity_group) {
                     e.selected = newEthnicityGroup.selected ? true:false
@@ -132,7 +143,10 @@ export default function Calculator() {
                     return e;
                 }
             })
-        )
+        setEthnicity(ethnicityTemp)
+
+        if(ethnicityTemp.every((e) => e.selected === true)) {setEthnicityAll(true)}
+        else {setEthnicityAll(false)}
     };
 
     // const [ancestry, setAncestry] = useState(ancestrySupport);
@@ -140,10 +154,25 @@ export default function Calculator() {
     // Helper Functions
     function resetter (formName, active) {
         if(formName === 'race') {
+            setActiveEthnicityTab(1)
             setRaceAll(active)
             setRace(
                 race.map((r) => {
                     return {...r, selected: active}
+                })
+            )
+        }
+        else if(formName === 'ethnicity') {
+            setActiveEthnicityTab(2)
+            setEthnicityAll(active)
+            setEthnicityGroup(
+                ethnicityGroup.map((e) => {
+                    return {...e, selected: active, indeterminate: false}
+                })
+            )
+            setEthnicity(
+                ethnicity.map((e) => {
+                    return {...e, selected: active, indeterminate: false}
                 })
             )
         }
@@ -160,37 +189,57 @@ export default function Calculator() {
     useEffect(() => {
         const test = []
         let datingPoolCountTemp = 0
-        let racePercent = 0;
 
-        if(ageData != false) { 
-        if(gender > 0) {
-            ageData.map(ageCount => {
-                if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
-                    test.push(Object.values(ageCount)[gender].replace(",", ""))
-                    datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
-                }
-            })
-            raceData.map(raceCount => {
-                race.map(r => {
-                    if(r.selected === true && r.race === raceCount.race) {
-                        racePercent += parseFloat(raceCount["decimal"])
+        if(ageData != false) { // Wait for DataPull Component to finish first.
+            if(gender > 0) { // If neither at leasat one gender button is selected.
+                ageData.map(ageCount => {
+                    if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
+                        test.push(Object.values(ageCount)[gender].replace(",", ""))
+                        datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
                     }
                 })
-            })
-            if (racePercent > 1) {racePercent = 1}
-            datingPoolCountTemp *= racePercent
-            setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                if (activeEthnicityTab === 1) { // Race tab active
+                    let racePercent = 0;
+                    raceData.map(raceCount => {
+                        race.map(r => {
+                            if(r.selected === true && r.race === raceCount.race) {
+                                racePercent += parseFloat(raceCount["decimal"])
+                            }
+                        })
+                    })
+                    if (racePercent > 1) { // The census race stats don't add up to 100%.
+                        racePercent = 1
+                        datingPoolCountTemp *= racePercent
+                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                        }
+                    else {
+                        datingPoolCountTemp *= racePercent
+                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))}
+                    }
+                else if (activeEthnicityTab === 2) { // Ethnicity tab active
+                    let ethnicityPercent = 0;
+                    ethnicityData.map(ethnicityCount => {
+                        ethnicity.map(e => {
+                            if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
+                                ethnicityPercent += parseFloat(ethnicityCount["decimal"])
+                            }
+                        })
+                    })
+                        datingPoolCountTemp *= ethnicityPercent
+                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                }
+
             }
             else {
                 datingPoolCountTemp = 0
                 setDatingPoolCount(datingPoolCountTemp)
+                }
             }
-        }
         else {
             datingPoolCountTemp = 0
             setDatingPoolCount(datingPoolCountTemp)
         }
-    }, [ ageData, gender, ageRange, race])
+    }, [ ageData, gender, ageRange, race, ethnicity])
 
 
     // This state is used by the TabContext component that controls the menu tabs
@@ -225,8 +274,19 @@ export default function Calculator() {
             
                     <Tab label="Ethnicity" value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}/>
                     <Tab label="Ancestry" value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}/>
-                    <Tab label="Test" value="10"style={{ minWidth: 50 }}/>
-
+                    <Tab icon={<FilterVintageIcon />} label={
+                        <div style={{whiteSpace:"pre-line"}}>
+   <Typography style={{ wordWrap: "break-word" }} variant="caption">
+          Following 
+          lkjs
+        </Typography>
+        <br />
+        <Typography variant="title">
+          58
+        </Typography>
+                        </div>
+                    }
+                     value="10" component="pre" style={{ minWidth: 50, whiteSpace: "pre-line" }}/>
                 </TabList>
             </Box>
 
@@ -242,7 +302,9 @@ export default function Calculator() {
                 <TabPanel value="5" sx={{padding:"0"}}    >        
                     <Ethnicity 
                         activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity} 
-                        activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup} />
+                        activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup} 
+                        activeEthnicityAll={ethnicityAll} resetter={resetter}
+                        />
                 </TabPanel>
                 <TabPanel value="10">            
                     <Test activeGender={gender} onGenderClick={handleGender}/>

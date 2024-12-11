@@ -57,7 +57,10 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
 function CheckBoxParent({ group, onClick, label, color, children, onClickChild }){
 return (
     <div className="checkBoxParent">
-    <FormControlLabel
+    <FormControlLabel sx={{
+                "& .MuiTypography-root": {
+                    fontWeight: "550"
+                    }}}
         control={
             <Checkbox
                 id={group.ethnicity_group}
@@ -72,6 +75,7 @@ return (
                     }}
                 sx={{
                     padding: "2px"
+                    ,fontWeight: "bold"
                     // ,transition: "box-shadow .2s",
                     //     '&:hover': {
                     //         boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
@@ -88,8 +92,10 @@ return (
                     // ,"&.MuiButtonBase-root": {
                     //     disableRipple: false
                     // }
-                    // ,"&.MuiCheckbox-root": {
-                    // }
+                    ,"& .MuiTypography-root": {
+                    padding: "20px"
+                    ,fontWeight: "bold"
+                    }
                 }}
             />}
          label={label}
@@ -114,7 +120,40 @@ return (
     )
 }
 
-export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEthnicityGroup, onEthnicityGroupClick } ) {
+function ResetBox({ select, onClick }){
+    return(
+        <div className="openToAllBox">
+        <FormControlLabel
+            control=
+            {<Checkbox
+                id="open_to_all"
+                checked={select}
+                // {...select === "indeterminate" && {indeterminate:true}}
+                onChange={(event) => {
+                    onClick("ethnicity", event.target.checked);
+                    }}
+                    sx={{
+                        padding: "2px"
+                        ,"& .MuiSvgIcon-root": { 
+                                fontSize: 28,
+                                color: "#D8D8D8",
+                            }
+                        // ,backgroundColor: "transparent"
+                        // ,"&.MuiButtonBase-root": {
+                        //     disableRipple: false
+                        // }
+                        // ,"&.MuiCheckbox-root": {
+                        // }
+                    }}
+            ></Checkbox>}
+            label="Open to All"
+            >
+                </FormControlLabel>
+                </div>
+    )
+}
+
+export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEthnicityGroup, onEthnicityGroupClick, activeEthnicityAll, resetter } ) {
     // Prepare data by organizing ethnicities into respective groups and inserting those nested objects into an array.
     const organizedEthnicity = []
     const ethnicityOrganizer = activeEthnicityGroup.map((group) => {
@@ -130,6 +169,7 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
     // First we loop through each ethnicity group and provide both ethnicity group props and the ethnicity children props.
     return (
         <div className="checkBoxContainerParent"> 
+        <ResetBox key="open_to_all" select={activeEthnicityAll} onClick={resetter}/>
         <div className="checkBoxContainer">
             {organizedEthnicity.map((group) => (
             <CheckBoxParent 

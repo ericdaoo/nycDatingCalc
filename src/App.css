@@ -65,11 +65,32 @@ div {
 
 }
 
+.openToAllBox {
+  /* min-width: 170px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start; */
+  width: fit-content;
+  /* width: autol */
+  margin: 0px 0px 0px 15px;
+  padding: 0px 0px 5px 15px;
+
+  background-color: rgb(250, 250, 250);
+  border-radius: 15px;
+
+
+}
+
 
 
 .checkBoxContainerParent {
   width: 100%;
   height: 100%;
+  padding: 25px 0 0 0;
   /* display: flex;
   overflow: scroll; */
   /* align-content: flex-start;

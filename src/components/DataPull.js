@@ -17,7 +17,7 @@ export default function DataPull({ onPull }) {
                         ,'1378955350' // Ethnicity
                         // ,'1191707471' // Height
                         // ,'481252969' // Income
-                        ,'321177856' // Ancestry
+                        ,'1439753027' // Ancestry
         ]
 
         const responses = [];
