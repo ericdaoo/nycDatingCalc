@@ -41,7 +41,7 @@ export default function Calculator() {
         setAncestryData(newData[3])
     };
 
-    const [gender, setGender] = useState(3);
+    const [gender, setGender] = useState(1);
     function handleGender(newGender) {
         setGender(newGender)
     };
@@ -182,24 +182,38 @@ export default function Calculator() {
 
     // Dating pool calculation logic
     const [datingPoolCount, setDatingPoolCount] = useState(0)
+    const [agePercent, setAgePercent] = useState(0)
+    const [racePercent, setRacePercent] = useState(0)
+    const [ethnicityPercent, setEthnicityPercent] = useState(0)
     function handleCount(newDatingPoolCount) {
         setDatingPoolCount(newDatingPoolCount)
     };
+
   
     useEffect(() => {
         const test = []
+        let malePop = 2430710
+        let femalePop = 2586320
         let datingPoolCountTemp = 0
+        let agePop = 0
+        let racePercent = 0;
+        let ethnicityPercent = 0;
+
 
         if(ageData != false) { // Wait for DataPull Component to finish first.
-            if(gender > 0) { // If neither at leasat one gender button is selected.
+            if(gender > 0) { // At least one gender button is selected.
                 ageData.map(ageCount => {
+                    agePop += parseInt(Object.values(ageCount)[gender].replace(",", ""))
                     if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
                         test.push(Object.values(ageCount)[gender].replace(",", ""))
                         datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
+                        
                     }
                 })
+                console.log(agePop, datingPoolCountTemp)
+                setAgePercent(((datingPoolCountTemp/agePop) * 100 ).toFixed(0) + '%')
                 if (activeEthnicityTab === 1) { // Race tab active
-                    let racePercent = 0;
+                    setEthnicityPercent(null)
                     raceData.map(raceCount => {
                         race.map(r => {
                             if(r.selected === true && r.race === raceCount.race) {
@@ -207,17 +221,12 @@ export default function Calculator() {
                             }
                         })
                     })
-                    if (racePercent > 1) { // The census race stats don't add up to 100%.
-                        racePercent = 1
-                        datingPoolCountTemp *= racePercent
-                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
-                        }
-                    else {
-                        datingPoolCountTemp *= racePercent
-                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))}
+                    datingPoolCountTemp *= racePercent
+                    setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                    setRacePercent((racePercent * 100).toFixed(0) + '%')
                     }
                 else if (activeEthnicityTab === 2) { // Ethnicity tab active
-                    let ethnicityPercent = 0;
+                    setRacePercent(null)
                     ethnicityData.map(ethnicityCount => {
                         ethnicity.map(e => {
                             if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
@@ -227,6 +236,7 @@ export default function Calculator() {
                     })
                         datingPoolCountTemp *= ethnicityPercent
                         setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                    setEthnicityPercent((ethnicityPercent * 100).toFixed(0) + '%')
                 }
 
             }
@@ -268,21 +278,41 @@ export default function Calculator() {
                     // ,color:'#89F0DD'
                 }}/>
                     {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
-                    <Tab label="Age" value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}/>
+                    <Tab value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}
+                    label={
+                        <div>
+                        Age
+                        <br />
+                        <p className="kpiPercent">{agePercent}</p>
+                        </div>
+                    } />
                     <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }}/>
-                    <Tab label="Race" value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}/>
+                    <Tab value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}
+                        label={
+                            <div>
+                            Race
+                            <br />
+                            <p className="kpiPercent">{racePercent}</p>
+                            </div>
+                        } />
             
-                    <Tab label="Ethnicity" value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}/>
+                    <Tab value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}
+                        label={
+                            <div>
+                            Ethnicity
+                            <br />
+                            <p className="kpiPercent">{ethnicityPercent}</p>
+                            </div>}
+                            />
                     <Tab label="Ancestry" value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}/>
                     <Tab icon={<FilterVintageIcon />} label={
                         <div style={{whiteSpace:"pre-line"}}>
-   <Typography style={{ wordWrap: "break-word" }} variant="caption">
-          Following 
-          lkjs
+   <Typography style={{ }} variant="caption"> 
+          test
         </Typography>
         <br />
         <Typography variant="title">
-          58
+          ❌🟩
         </Typography>
                         </div>
                     }

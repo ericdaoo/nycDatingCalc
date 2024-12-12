@@ -16,7 +16,7 @@ function createArray(n, m) {
   return result;
 }
 
-const testData = createArray(20, 60);
+const testData = createArray(20, 64);
 const range = [Math.min(...testData), Math.max(...testData)];
 // const range = [20,60]
 

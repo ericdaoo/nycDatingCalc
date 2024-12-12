@@ -1,6 +1,6 @@
 [
   {
-    "race": "American Indian and Alaska Native",
+    "race": "Native American or Alaska Native",
     "selected": true,
     "color": "#FAEDA5"
   },
@@ -20,7 +20,7 @@
     "color": "#ffdab9"
   },
   {
-    "race": "Native Hawaiian and Other Pacific Islander",
+    "race": "Pacific Islander or Native Hawaiian",
     "selected": true,
     "color": "#89F0DD"
   },
@@ -30,7 +30,12 @@
     "color": "#b4e1ff"
   },
   {
-    "race": "Two or More Races",
+    "race": "Two or more races or Multiracial",
+    "selected": true,
+    "color": "#c5b4e3"
+  },
+  {
+    "race": "Some other race",
     "selected": true,
     "color": "#c5b4e3"
   }

@@ -1,6 +1,12 @@
 div {
   box-sizing:border-box;
 }
+
+.kpiPercent {
+  margin: 0;
+  
+}
+
 .slider {
   position: relative;
   margin: auto;
