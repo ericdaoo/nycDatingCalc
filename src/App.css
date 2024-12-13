@@ -2,9 +2,34 @@ div {
   box-sizing:border-box;
 }
 
-.kpiPercent {
+p {
   margin: 0;
-  
+  padding: 2px 0 2px 0;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+}
+
+p.kpiPercent {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+p.tabName {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+p.tabNameSmall {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.buttons {
+  /* padding: 10px; */
 }
 
 .slider {

@@ -41,7 +41,7 @@ export default function Calculator() {
         setAncestryData(newData[3])
     };
 
-    const [gender, setGender] = useState(1);
+    const [gender, setGender] = useState(3);
     function handleGender(newGender) {
         setGender(newGender)
     };
@@ -182,6 +182,7 @@ export default function Calculator() {
 
     // Dating pool calculation logic
     const [datingPoolCount, setDatingPoolCount] = useState(0)
+    const [genderPercent, setGenderPercent] = useState(0)
     const [agePercent, setAgePercent] = useState(0)
     const [racePercent, setRacePercent] = useState(0)
     const [ethnicityPercent, setEthnicityPercent] = useState(0)
@@ -192,10 +193,10 @@ export default function Calculator() {
   
     useEffect(() => {
         const test = []
-        let malePop = 2430710
-        let femalePop = 2586320
-        let datingPoolCountTemp = 0
-        let agePop = 0
+        let totalPop = 0; // Population size for all genders and entire age range.
+        let datingPoolCountTemp = 0 // Selected gender and age range.
+        let agePop = 0; // Population size for selected age range and both genders.
+        let totalAgePop = 0 // Population size for entire age range
         let racePercent = 0;
         let ethnicityPercent = 0;
 
@@ -203,15 +204,17 @@ export default function Calculator() {
         if(ageData != false) { // Wait for DataPull Component to finish first.
             if(gender > 0) { // At least one gender button is selected.
                 ageData.map(ageCount => {
-                    agePop += parseInt(Object.values(ageCount)[gender].replace(",", ""))
+                    totalPop += parseInt(Object.values(ageCount)[1].replace(",", ""))
+                    totalAgePop += parseInt(Object.values(ageCount)[gender].replace(",", ""))
                     if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
                         test.push(Object.values(ageCount)[gender].replace(",", ""))
                         datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
+                        agePop += parseInt(Object.values(ageCount)[1].replace(",", ""))
                         
                     }
                 })
-                console.log(agePop, datingPoolCountTemp)
-                setAgePercent(((datingPoolCountTemp/agePop) * 100 ).toFixed(0) + '%')
+                setGenderPercent(((datingPoolCountTemp/agePop) * 100 ).toFixed(0) + '%')
+                setAgePercent(((datingPoolCountTemp/totalAgePop) * 100 ).toFixed(0) + '%')
                 if (activeEthnicityTab === 1) { // Race tab active
                     setEthnicityPercent(null)
                     raceData.map(raceCount => {
@@ -273,16 +276,20 @@ export default function Calculator() {
                     variant="scrollable" scrollButtons={true} allowScrollButtonsMobile={true}  
                     //TabIndicatorProps={{style: {background:'#89F0DD'}}}
                     >
-
-                    <Tab label="Gender" value="1" icon={<WcIcon />} style={{ minWidth: 50
+                    <Tab value="1" icon={<WcIcon />} style={{ minWidth: 50
                     // ,color:'#89F0DD'
-                }}/>
+                }}label={
+                    <div>
+                    <p className="tabNameSmall">Sexual</p>
+                    <p className="tabNameSmall">Orientation</p>
+                    <p className="kpiPercent">{genderPercent}</p>
+                    </div>
+                } />
                     {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
                     <Tab value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}
                     label={
                         <div>
-                        Age
-                        <br />
+                        <p className="tabName">Age</p>
                         <p className="kpiPercent">{agePercent}</p>
                         </div>
                     } />
@@ -290,8 +297,7 @@ export default function Calculator() {
                     <Tab value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}
                         label={
                             <div>
-                            Race
-                            <br />
+                            <p className="tabName"> Race </p>
                             <p className="kpiPercent">{racePercent}</p>
                             </div>
                         } />
@@ -299,8 +305,7 @@ export default function Calculator() {
                     <Tab value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}
                         label={
                             <div>
-                            Ethnicity
-                            <br />
+                            <p className="tabName"> Ethnicity </p>
                             <p className="kpiPercent">{ethnicityPercent}</p>
                             </div>}
                             />
