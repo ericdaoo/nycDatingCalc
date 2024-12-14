@@ -1,120 +1,126 @@
 [
   {
-    "ancestryGroup": "American Indian"
+    "ancestry_group": "American Indian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#FAEDA5"
   },
   {
-    "ancestryGroup": "Central American Indian"
+    "ancestry_group": "Central American Indian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#FAEDA5"
   },
   {
-    "ancestryGroup": "South American Indian"
+    "ancestry_group": "South American Indian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#FAEDA5"
   },
   {
-    "ancestryGroup": "Caribbean Indian"
+    "ancestry_group": "Caribbean Indian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#FAEDA5"
   },
   {
-    "ancestryGroup": "Mesoamerican Indian"
+    "ancestry_group": "Mesoamerican Indian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#FAEDA5"
   },
   {
-    "ancestryGroup": "East Asian"
+    "ancestry_group": "East Asian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffb7c3"
   },
   {
-    "ancestryGroup": "Central Asian"
+    "ancestry_group": "Central Asian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffb7c3"
   },
   {
-    "ancestryGroup": "Southeast Asian"
+    "ancestry_group": "Southeast Asian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffb7c3"
   },
   {
-    "ancestryGroup": "Polynesian"
+    "ancestry_group": "South Asian"
+    ,"selected": true
+    ,"indeterminate": false
+    ,"color": "#ffb7c3"
+  },
+  {
+    "ancestry_group": "Polynesian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#89F0DD"
   },
   {
-    "ancestryGroup": "Micronesian"
+    "ancestry_group": "Micronesian"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#89F0DD"
   },
   {
-    "ancestryGroup": "African American"
+    "ancestry_group": "African American"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#C5DCA0"
   },
   {
-    "ancestryGroup": "Sub-Saharan African"
+    "ancestry_group": "Sub-Saharan African"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#C5DCA0"
   },
   {
-    "ancestryGroup": "Caribbean"
+    "ancestry_group": "Caribbean"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#c5b4e3"
   },
   {
-    "ancestryGroup": "Latin North American"
+    "ancestry_group": "Latin North American"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffdab9"
   },
   {
-    "ancestryGroup": "Latin Central American"
+    "ancestry_group": "Latin Central American"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffdab9"
   },
   {
-    "ancestryGroup": "Latin South American"
+    "ancestry_group": "Latin South American"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffdab9"
   },
   {
-    "ancestryGroup": "Latin Caribbean Hispanic"
+    "ancestry_group": "Latin Caribbean Hispanic"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#ffdab9"
   },
   {
-    "ancestryGroup": "European"
+    "ancestry_group": "European"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#b4e1ff"
   },
   {
-    "ancestryGroup": "Other White"
+    "ancestry_group": "Other White"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#b4e1ff"
   },
   {
-    "ancestryGroup": "Middle Eastern or North African"
+    "ancestry_group": "Middle Eastern or North African"
     ,"selected": true
     ,"indeterminate": false
     ,"color": "#66C684"

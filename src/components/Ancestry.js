@@ -3,40 +3,25 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-function CheckBoxChild({ ethnicity, onClick, label, color }){
+function CheckBoxChild({ ancestry, onClick, label, color }){
     return (
         <FormControlLabel
     control={
         <Checkbox
-            id={ethnicity.ethnicity}
-            checked={ethnicity.selected}
+            id={ancestry.ancestry}
+            checked={ancestry.selected}
             onChange={(event) => {
                 onClick({
-                        ...ethnicity,
+                        ...ancestry,
                         selected: event.target.checked,
                     });
                 }}
             sx={{
                 padding: "0px 0 0 0"
-                // transition: "box-shadow .2s"
-                // ,'&:hover': {
-                //         boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
-                //     },
-                // '&:before': {
-                //         boxShadow:
-                //         '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
-                //     }
                 ,"& .MuiSvgIcon-root": { 
                         fontSize: 28,
                         color: {color},
                     }
-        
-                // ,backgroundColor: "transparent"
-                // ,"&.MuiButtonBase-root": {
-                //     disableRipple: false
-                // }
-                // ,"&.MuiCheckbox-root": {
-                // }
             }}
         />}
         sx={{
@@ -61,12 +46,12 @@ return (
                     }}}
         control={
             <Checkbox
-                id={group.ethnicity_group}
+                id={group.ancestry_group}
                 checked={group.selected}
                 indeterminate={group.indeterminate}
                 onChange={(event) => {
                     onClick({
-                            ethnicity_group: group.ethnicity_group,
+                            ancestry_group: group.ancestry_group,
                             color: group.color,
                             selected: event.target.checked,
                         });
@@ -74,22 +59,10 @@ return (
                 sx={{
                     padding: "2px"
                     ,fontWeight: "bold"
-                    // ,transition: "box-shadow .2s",
-                    //     '&:hover': {
-                    //         boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
-                    //       },
-                    //       '&:before': {
-                    //         boxShadow:
-                    //           '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
-                    //       }
                     ,"& .MuiSvgIcon-root": { 
                             fontSize: 28,
                             color: {color},
                         }
-                    // ,backgroundColor: "transparent"
-                    // ,"&.MuiButtonBase-root": {
-                    //     disableRipple: false
-                    // }
                     ,"& .MuiTypography-root": {
                     padding: "20px"
                     ,fontWeight: "bold"
@@ -103,18 +76,16 @@ return (
      <div className="checkBoxChild">
             {children.map((child) => (
             <CheckBoxChild 
-                key={child.ethnicity} 
-                ethnicity={child} 
-                // ethnicity_group={child.ethnicity_group}
-                label={child.ethnicity} 
+                key={child.ancestry} 
+                ancestry={child} 
+                // ancestry_group={child.ancestry_group}
+                label={child.ancestry} 
                 color={child.color} 
                 onClick={onClickChild}
             />
         ))}
         </div>
      </div>
-
-
     )
 }
 
@@ -128,7 +99,7 @@ function ResetBox({ select, onClick }){
                 checked={select}
                 // {...select === "indeterminate" && {indeterminate:true}}
                 onChange={(event) => {
-                    onClick("ethnicity", event.target.checked);
+                    onClick("ancestry", event.target.checked);
                     }}
                     sx={{
                         padding: "2px"
@@ -136,12 +107,6 @@ function ResetBox({ select, onClick }){
                                 fontSize: 28,
                                 color: "#D8D8D8",
                             }
-                        // ,backgroundColor: "transparent"
-                        // ,"&.MuiButtonBase-root": {
-                        //     disableRipple: false
-                        // }
-                        // ,"&.MuiCheckbox-root": {
-                        // }
                     }}
             ></Checkbox>}
             label="Open to All"
@@ -151,34 +116,34 @@ function ResetBox({ select, onClick }){
     )
 }
 
-export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEthnicityGroup, onEthnicityGroupClick, activeEthnicityAll, resetter } ) {
+export default function Ancestry( { activeAncestry, onAncestryClick, activeAncestryGroup, onAncestryGroupClick, activeAncestryAll, resetter } ) {
     // Prepare data by organizing ethnicities into respective groups and inserting those nested objects into an array.
-    const organizedEthnicity = []
-    const ethnicityOrganizer = activeEthnicityGroup.map((group) => {
-        const ethnicityChildren = []
-        activeEthnicity.map((ethnicity) => {
-            if(ethnicity.ethnicity_group === group.ethnicity_group) {
-                ethnicityChildren.push(ethnicity)
+    const organizedAncestry = []
+    const ancestryOrganizer = activeAncestryGroup.map((group) => {
+        const ancestryChildren = []
+        activeAncestry.map((ancestry) => {
+            if(ancestry.ancestry_group === group.ancestry_group) {
+                ancestryChildren.push(ancestry)
             }
         })
-        organizedEthnicity.push({...group, "children": ethnicityChildren})
+        organizedAncestry.push({...group, "children": ancestryChildren})
     }
     );
-    // First we loop through each ethnicity group and provide both ethnicity group props and the ethnicity children props.
+    // First we loop through each ancestry group and provide both ancestry group props and the ancestry children props.
     return (
         <div className="checkBoxContainerParent"> 
-        <ResetBox key="open_to_all" select={activeEthnicityAll} onClick={resetter}/>
+        <ResetBox key="open_to_all" select={activeAncestryAll} onClick={resetter}/>
         <div className="checkBoxContainer">
-            {organizedEthnicity.map((group) => (
+            {organizedAncestry.map((group) => (
             <CheckBoxParent 
-                key={group.ethnicity_group} 
+                key={group.ancestry_group} 
                 group={group} 
-                label={group.ethnicity_group} 
+                label={group.ancestry_group} 
                 color={group.color} 
-                onClick={onEthnicityGroupClick}
+                onClick={onAncestryGroupClick}
 
                 children={group.children}
-                onClickChild={onEthnicityClick}
+                onClickChild={onAncestryClick}
             />
         ))}
         </div>

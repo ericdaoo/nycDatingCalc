@@ -23,6 +23,9 @@ import raceSupport from "../support_files/raceSupport.json"
 import Ethnicity from "./Ethnicity"
 import ethnicitySupport from "../support_files/ethnicitySupport.json"
 import ethnicityGroupSupport from "../support_files/ethnicityGroupSupport.json"
+import Ancestry from "./Ancestry"
+import ancestrySupport from "../support_files/ancestrySupport.json"
+import ancestryGroupSupport from "../support_files/ancestryGroupSupport.json"
 
 import Test from "./test"
 
@@ -52,7 +55,7 @@ export default function Calculator() {
     };
 
     const [activeEthnicityTab, setActiveEthnicityTab] = useState(1)
-
+    //👥👥👥
     const [raceAll, setRaceAll] = useState(true);
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
@@ -70,7 +73,7 @@ export default function Calculator() {
         if(raceTemp.every((e) => e.selected === true)) {setRaceAll(true)}
         else {setRaceAll(false)}
     };
-
+    //🌎🌎🌎
     const [ethnicityAll, setEthnicityAll] = useState(true);
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
     function handleEthnicity(newEthnicity) {
@@ -149,7 +152,85 @@ export default function Calculator() {
         else {setEthnicityAll(false)}
     };
 
-    // const [ancestry, setAncestry] = useState(ancestrySupport);
+    //🌻🌻🌻
+    const [ancestryAll, setAncestryAll] = useState(true);
+    const [ancestry, setAncestry] = useState(ancestrySupport);
+    function handleAncestry(newAncestry) {
+        setActiveEthnicityTab(3)
+        // First update selected ancestry checkbox.
+        // Note 1
+        const ancestryTemp = 
+            ancestry.map((e) => {
+                if (e.ancestry === newAncestry.ancestry) {
+                    return newAncestry;
+                } else {
+                    return e;
+                }
+            })
+        setAncestry(ancestryTemp)
+
+        if(ancestryTemp.every((e) => e.selected === true)) {setAncestryAll(true)}
+        else {setAncestryAll(false)}
+
+        // Obtain only ethnicities in ancestry group of interest.
+        const ancestryGroupTemp = [] 
+            ancestryTemp.map((e) => {
+                if (e.ancestry_group === newAncestry.ancestry_group) {
+                    return ancestryGroupTemp.push(e);
+                }
+            })
+        // Determine whether all, none, or some ancestry check boxes of an ancestry group are selected.
+        const allChildrenSelected = () => {
+            if(ancestryGroupTemp.every((e) => e.selected === true)) {return true}
+            else if(ancestryGroupTemp.every((e) => e.selected === false)) {return false}
+            else {return "indeterminate"}
+        }
+        // Update ancestryGroup selected value based on if the ancestry that was just selected made it so that all, none, or some of the ancestry group's ancestry boxes were selected.
+        setAncestryGroup(
+            ancestryGroup.map((g) => {
+                if (g.ancestry_group === newAncestry.ancestry_group) {
+                    if(allChildrenSelected() === true || allChildrenSelected() === false)  
+                        {return {...g
+                        ,selected: allChildrenSelected()
+                        ,indeterminate: false};
+                        }
+                    else {return {...g
+                        ,indeterminate: true}
+                    }
+                } else {
+                    return g;
+                }
+            })
+        )
+    }
+
+    const [ancestryGroup, setAncestryGroup] = useState(ancestryGroupSupport);
+    function handleAncestryGroup(newAncestryGroup) {
+        setActiveEthnicityTab(3)
+        setAncestryGroup(
+            ancestryGroup.map((g) => {
+                if (g.ancestry_group === newAncestryGroup.ancestry_group) {
+                    return newAncestryGroup;
+                } else {
+                    return g;
+                }
+            })
+        )
+        const ancestryTemp = 
+            ancestry.map((e) => {
+                if (e.ancestry_group === newAncestryGroup.ancestry_group) {
+                    e.selected = newAncestryGroup.selected ? true:false
+                    return e;
+                } else {
+                    return e;
+                }
+            })
+        setAncestry(ancestryTemp)
+
+        if(ancestryTemp.every((e) => e.selected === true)) {setAncestryAll(true)}
+        else {setAncestryAll(false)}
+    };
+
 
     // Helper Functions
     function resetter (formName, active) {
@@ -172,6 +253,20 @@ export default function Calculator() {
             )
             setEthnicity(
                 ethnicity.map((e) => {
+                    return {...e, selected: active, indeterminate: false}
+                })
+            )
+        }
+        else if(formName === 'ancestry') {
+            setActiveEthnicityTab(3)
+            setAncestryAll(active)
+            setAncestryGroup(
+                ancestryGroup.map((e) => {
+                    return {...e, selected: active, indeterminate: false}
+                })
+            )
+            setAncestry(
+                ancestry.map((e) => {
                     return {...e, selected: active, indeterminate: false}
                 })
             )
@@ -216,7 +311,7 @@ export default function Calculator() {
                 setGenderPercent(((datingPoolCountTemp/agePop) * 100 ).toFixed(0) + '%')
                 setAgePercent(((datingPoolCountTemp/totalAgePop) * 100 ).toFixed(0) + '%')
                 if (activeEthnicityTab === 1) { // Race tab active
-                    setEthnicityPercent(null)
+                    setEthnicityPercent('-')
                     raceData.map(raceCount => {
                         race.map(r => {
                             if(r.selected === true && r.race === raceCount.race) {
@@ -229,7 +324,7 @@ export default function Calculator() {
                     setRacePercent((racePercent * 100).toFixed(0) + '%')
                     }
                 else if (activeEthnicityTab === 2) { // Ethnicity tab active
-                    setRacePercent(null)
+                    setRacePercent('-')
                     ethnicityData.map(ethnicityCount => {
                         ethnicity.map(e => {
                             if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
@@ -309,7 +404,12 @@ export default function Calculator() {
                             <p className="kpiPercent">{ethnicityPercent}</p>
                             </div>}
                             />
-                    <Tab label="Ancestry" value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}/>
+                    <Tab value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}label={
+                            <div>
+                            <p className="tabName"> Ancestry </p>
+                            <p className="kpiPercent">{}</p>
+                            </div>}
+                            />
                     <Tab icon={<FilterVintageIcon />} label={
                         <div style={{whiteSpace:"pre-line"}}>
    <Typography style={{ }} variant="caption"> 
@@ -339,6 +439,13 @@ export default function Calculator() {
                         activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity} 
                         activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup} 
                         activeEthnicityAll={ethnicityAll} resetter={resetter}
+                        />
+                </TabPanel>
+                <TabPanel value="6" sx={{padding:"0"}}    >        
+                    <Ancestry 
+                        activeAncestry={ancestry} onAncestryClick={handleAncestry} 
+                        activeAncestryGroup={ancestryGroup} onAncestryGroupClick={handleAncestryGroup} 
+                        activeAncestryAll={ancestryAll} resetter={resetter}
                         />
                 </TabPanel>
                 <TabPanel value="10">            
