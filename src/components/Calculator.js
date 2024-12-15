@@ -281,6 +281,7 @@ export default function Calculator() {
     const [agePercent, setAgePercent] = useState(0)
     const [racePercent, setRacePercent] = useState(0)
     const [ethnicityPercent, setEthnicityPercent] = useState(0)
+    const [ancestryPercent, setAncestryPercent] = useState(0)
     function handleCount(newDatingPoolCount) {
         setDatingPoolCount(newDatingPoolCount)
     };
@@ -294,6 +295,7 @@ export default function Calculator() {
         let totalAgePop = 0 // Population size for entire age range
         let racePercent = 0;
         let ethnicityPercent = 0;
+        let ancestryPercent = 0;
 
 
         if(ageData != false) { // Wait for DataPull Component to finish first.
@@ -312,6 +314,7 @@ export default function Calculator() {
                 setAgePercent(((datingPoolCountTemp/totalAgePop) * 100 ).toFixed(0) + '%')
                 if (activeEthnicityTab === 1) { // Race tab active
                     setEthnicityPercent('-')
+                    setAncestryPercent('-')
                     raceData.map(raceCount => {
                         race.map(r => {
                             if(r.selected === true && r.race === raceCount.race) {
@@ -325,6 +328,7 @@ export default function Calculator() {
                     }
                 else if (activeEthnicityTab === 2) { // Ethnicity tab active
                     setRacePercent('-')
+                    setAncestryPercent('-')
                     ethnicityData.map(ethnicityCount => {
                         ethnicity.map(e => {
                             if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
@@ -335,6 +339,20 @@ export default function Calculator() {
                         datingPoolCountTemp *= ethnicityPercent
                         setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
                     setEthnicityPercent((ethnicityPercent * 100).toFixed(0) + '%')
+                }
+                else if (activeEthnicityTab === 3) { // Ancestry tab active
+                    setRacePercent('-')
+                    setEthnicityPercent('-')
+                    ancestryData.map(ancestryCount => {
+                        ancestry.map(a => {
+                            if(a.selected === true && a.ancestry === ancestryCount.ancestry) {
+                                ancestryPercent += parseFloat(ancestryCount["decimal"])
+                            }
+                        })
+                    })
+                        datingPoolCountTemp *= ancestryPercent
+                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                    setAncestryPercent((ancestryPercent * 100).toFixed(0) + '%')
                 }
 
             }
@@ -347,7 +365,7 @@ export default function Calculator() {
             datingPoolCountTemp = 0
             setDatingPoolCount(datingPoolCountTemp)
         }
-    }, [ ageData, gender, ageRange, race, ethnicity])
+    }, [ ageData, gender, ageRange, race, ethnicity, ancestry])
 
 
     // This state is used by the TabContext component that controls the menu tabs
@@ -407,7 +425,7 @@ export default function Calculator() {
                     <Tab value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}label={
                             <div>
                             <p className="tabName"> Ancestry </p>
-                            <p className="kpiPercent">{}</p>
+                            <p className="kpiPercent">{ancestryPercent}</p>
                             </div>}
                             />
                     <Tab icon={<FilterVintageIcon />} label={

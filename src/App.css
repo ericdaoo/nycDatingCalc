@@ -32,6 +32,10 @@ p.tabNameSmall {
   /* padding: 10px; */
 }
 
+.ageSlider {
+  width: 100%;
+}
+
 .slider {
   position: relative;
   margin: auto;
@@ -96,6 +100,12 @@ p.tabNameSmall {
 
 }
 
+.ethnicityHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .openToAllBox {
   /* min-width: 170px;
 
@@ -112,8 +122,6 @@ p.tabNameSmall {
 
   background-color: rgb(250, 250, 250);
   border-radius: 15px;
-
-
 }
 
 
@@ -122,7 +130,7 @@ p.tabNameSmall {
   width: 900px;
   height: 100%;
   padding: 25px 0 0 0;
-  overflow: scroll;
+  /* overflow: scroll; */
 
   /* display: flex;
   overflow: scroll; */
@@ -140,7 +148,7 @@ p.tabNameSmall {
   /* min-width: 0; */
   display: flex;
   flex-direction: row;
-  /* overflow: scroll; */
+  overflow: scroll;
   align-content: flex-start;
   align-items: flex-start;
   /* justify-content: center; */
@@ -204,7 +212,7 @@ p.tabNameSmall {
   .checkBoxContainerParent {
     width: 100vw;
     height: 100%;
-    padding: 25px 0 0 0;
+    padding: 25px 0 25px 0;
     /* display: flex; */
     overflow: none; 
     /* align-content: flex-start;

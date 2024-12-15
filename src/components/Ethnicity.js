@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function CheckBoxChild({ ethnicity, onClick, label, color }){
     return (
@@ -167,7 +168,15 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
     // First we loop through each ethnicity group and provide both ethnicity group props and the ethnicity children props.
     return (
         <div className="checkBoxContainerParent"> 
-        <ResetBox key="open_to_all" select={activeEthnicityAll} onClick={resetter}/>
+        <div className="ethnicityHeader">
+            <ResetBox key="open_to_all" select={activeEthnicityAll} onClick={resetter}/>
+            <div style={{margin:"0 12px 0 0"}}>
+            <ArrowForwardIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0", backgroundColor:"rgb(250, 250, 250)", borderRadius:"10px", padding:"2px 10px 2px 10px"}}/>
+            {/* <NavigateNextIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0"}}/>
+            <NavigateNextIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0"}}/> */}
+            </div>
+
+        </div>
         <div className="checkBoxContainer">
             {organizedEthnicity.map((group) => (
             <CheckBoxParent 

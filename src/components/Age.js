@@ -72,9 +72,9 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
     backgroundImage: "radial-gradient(circle, #3dbce3 40%, #000000 0%,#3dbce3 99%)"
   },
   '& .MuiSlider-valueLabel': {
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: 'normal',
-    top: 0,
+    top: -5,
     backgroundColor: 'unset',
     color: theme.palette.text.primary,
     '&::before': {
@@ -90,11 +90,13 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
   },
   '& .MuiSlider-markLabel[data-index="0"]': {
     top: "15px",
-    margin: "0 -20px"
+    margin: "0 -15px",
+    fontSize: 16
   },
   '& .MuiSlider-markLabel[data-index="1"]': {
     top: "15px",
-    margin: "0 0 0 20px"
+    margin: "0 0 0 15px",
+    fontSize: 16
   },
   '& .MuiSlider-track': {
     border: 'none',
@@ -140,7 +142,7 @@ export default function AgeSlider({ ageRange, onSlide, activeGender }) {
   };
 
   return (
-    <Box sx={{ width: 300, margin: 1, padding: 0}}>
+    <Box sx={{ width: 300, margin: 1, padding: "12px 0 0 0"}}>
       <CustomAgeSlider
         // aria-label="ios slider"
         // getAriaLabel={() => 'Age range'}
