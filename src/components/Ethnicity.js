@@ -170,8 +170,9 @@ export default function Ethnicity( { activeEthnicity, onEthnicityClick, activeEt
         <div className="checkBoxContainerParent"> 
         <div className="ethnicityHeader">
             <ResetBox key="open_to_all" select={activeEthnicityAll} onClick={resetter}/>
-            <div style={{margin:"0 12px 0 0"}}>
-            <ArrowForwardIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0", backgroundColor:"rgb(250, 250, 250)", borderRadius:"10px", padding:"2px 10px 2px 10px"}}/>
+            <div className="scrollHUD">
+                <p style={{color:"#cccccc", fontSize:"16px",fontWeight:"500"}}>Scroll</p>
+            <ArrowForwardIcon sx={{color:"#cccccc"}}/>
             {/* <NavigateNextIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0"}}/>
             <NavigateNextIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0"}}/> */}
             </div>

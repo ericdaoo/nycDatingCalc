@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function CheckBoxChild({ ancestry, onClick, label, color }){
     return (
@@ -132,7 +133,17 @@ export default function Ancestry( { activeAncestry, onAncestryClick, activeAnces
     // First we loop through each ancestry group and provide both ancestry group props and the ancestry children props.
     return (
         <div className="checkBoxContainerParent"> 
-        <ResetBox key="open_to_all" select={activeAncestryAll} onClick={resetter}/>
+            <div className="ethnicityHeader">
+                <ResetBox key="open_to_all" select={activeAncestryAll} onClick={resetter}/>
+
+                <div className="scrollHUD">
+                <p style={{color:"#cccccc", fontSize:"16px",fontWeight:"500"}}>Scroll</p>
+                <ArrowForwardIcon sx={{color:"#cccccc"}}/>
+            {/* <NavigateNextIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0"}}/>
+            <NavigateNextIcon sx={{color:"#D8D8D8", margin:"0 -5px 0 0"}}/> */}
+            </div>
+
+        </div>
         <div className="checkBoxContainer">
             {organizedAncestry.map((group) => (
             <CheckBoxParent 
