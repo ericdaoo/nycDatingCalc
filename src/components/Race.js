@@ -83,12 +83,17 @@ function ResetBox({ select, onClick }){
 
 export default function Race( { activeRace, onRaceClick, activeRaceAll, resetter } ) {
   return (
-        <FormGroup>
+    <div className="checkBoxContainerParentRace"> 
+        <div className="ethnicityHeader">
             <ResetBox key="open_to_all" select={activeRaceAll} onClick={resetter}/>
+        </div>
+
+        <FormGroup>
             {activeRace.map((race) => (
             <CheckBox key={race.race} race={race} label={race.race} color={race.color} onClick={onRaceClick}
                 />
         ))}
         </FormGroup>
+        </div>
   );
 }

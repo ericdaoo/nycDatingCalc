@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-function GenderButton({ value, backgroundColor, onClick }) {
+function GenderButton({ gender, onClick, backgroundColor }) {
     return(
     <Button 
-        onClick={onClick}
-        id={value}
+        onClick={(event) => {
+            onClick({
+                    ...gender
+                });
+            }}
+        id={gender.gender}
         className="button"
         sx={{ width:140
             ,height: "50px"
@@ -25,60 +29,27 @@ function GenderButton({ value, backgroundColor, onClick }) {
              
         }}
     >
-            {value}
+            {gender.gender}
     </Button>
     );
 };
 
 export default function GenderButtons({ activeGender, onGenderClick }) {
 
-    // const [genderValue, setGenderValue] = useState(activeGender)
-    
-    const startingWomenButton = (activeGender === 1 || activeGender === 3) ? true:false
-    const startingMenButton = (activeGender === 1 || activeGender === 2) ? true:false
-
-    const [activeWomenButton, setActiveWomenButton] = useState(startingWomenButton);
-    const [activeMenButton, setActiveMenButton] = useState(startingMenButton);
-
-// Note 1
-    useEffect(() => {
-        if (activeWomenButton && activeMenButton) {
-            onGenderClick(1)
-        }
-        else if (activeWomenButton && !activeMenButton) {
-            onGenderClick(3)
-        }
-        else if (!activeWomenButton && activeMenButton) {
-            onGenderClick(2)
-        }
-        else if (!activeWomenButton && !activeMenButton) { onGenderClick(0)
-        }
-        // onGenderClick(genderValue)
-
-    },[handleClick])
-
-    function handleClick(event) {
-        if (event.target.id === "Women") {
-            setActiveWomenButton(activeWomenButton ? false : true)
-        }
-        else if (event.target.id === "Men") {
-            setActiveMenButton(activeMenButton ? false : true)
-        }
-    }
-
     return (
-      <div className="buttons">
-        <p>Interested in</p>
-        <GenderButton
-            onClick={handleClick} 
-            value="Women"
-            backgroundColor={activeWomenButton ? "linear-gradient(.100turn, #ff4076, #ff9b69)" : "linear-gradient(.100turn, #212121, #808080)"}
-        />
-        <GenderButton 
-            onClick={handleClick} 
-            value="Men" 
-            backgroundColor={activeMenButton ? "linear-gradient(.100turn, #005eff, #3dbce3)" : "linear-gradient(.100turn, #212121, #808080)"}
-        />
+        <div >
+        <div>
+            <p>Interested in</p>
+            <div className="genderContainer">
+            <div className="genderButtons">
+
+                {activeGender.map((gender) => (
+                    <GenderButton key={gender.race} gender={gender} onClick={onGenderClick} backgroundColor={gender.selected ? gender.color : "linear-gradient(.100turn, #212121, #808080)"}
+                        />
+                 ))}
+            </div>
+            </div>
+        </div>
       </div>
     );
   }

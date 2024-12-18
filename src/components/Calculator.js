@@ -16,6 +16,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 
 import DataPull from "./DataPull"
+import genderSupport from "../support_files/genderSupport.json"
 import GenderButtons from "./Gender"
 import AgeSlider from "./Age"
 import Race from "./Race"
@@ -44,9 +45,22 @@ export default function Calculator() {
         setAncestryData(newData[3])
     };
 
-    const [gender, setGender] = useState(3);
+    const [gender, setGender] = useState(genderSupport);
     function handleGender(newGender) {
-        setGender(newGender)
+        const genderTemp = 
+            gender.map((g) => {
+                    if (g.gender === newGender.gender) {
+                        return {...newGender, selected: !newGender.selected};
+                    } else {
+                        return g;
+                    }
+                })
+        setGender(genderTemp)
+    };
+
+    const [genderIdentity, setGenderIdentity] = useState();
+    function handleGenderIdentity(newGenderIdentity) {
+        setGenderIdentity(newGenderIdentity)
     };
 
     const [ageRange, setAgeRange] = useState([26,32]);
@@ -298,73 +312,73 @@ export default function Calculator() {
         let ancestryPercent = 0;
 
 
-        if(ageData != false) { // Wait for DataPull Component to finish first.
-            if(gender > 0) { // At least one gender button is selected.
-                ageData.map(ageCount => {
-                    totalPop += parseInt(Object.values(ageCount)[1].replace(",", ""))
-                    totalAgePop += parseInt(Object.values(ageCount)[gender].replace(",", ""))
-                    if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
-                        test.push(Object.values(ageCount)[gender].replace(",", ""))
-                        datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
-                        agePop += parseInt(Object.values(ageCount)[1].replace(",", ""))
+        // if(ageData != false) { // Wait for DataPull Component to finish first.
+        //     if(gender > 0) { // At least one gender button is selected.
+        //         ageData.map(ageCount => {
+        //             totalPop += parseInt(Object.values(ageCount)[1].replace(",", ""))
+        //             totalAgePop += parseInt(Object.values(ageCount)[gender].replace(",", ""))
+        //             if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
+        //                 test.push(Object.values(ageCount)[gender].replace(",", ""))
+        //                 datingPoolCountTemp += parseInt(Object.values(ageCount)[gender].replace(",", ""))
+        //                 agePop += parseInt(Object.values(ageCount)[1].replace(",", ""))
                         
-                    }
-                })
-                setGenderPercent(((datingPoolCountTemp/agePop) * 100 ).toFixed(0) + '%')
-                setAgePercent(((datingPoolCountTemp/totalAgePop) * 100 ).toFixed(0) + '%')
-                if (activeEthnicityTab === 1) { // Race tab active
-                    setEthnicityPercent('-')
-                    setAncestryPercent('-')
-                    raceData.map(raceCount => {
-                        race.map(r => {
-                            if(r.selected === true && r.race === raceCount.race) {
-                                racePercent += parseFloat(raceCount["decimal"])
-                            }
-                        })
-                    })
-                    datingPoolCountTemp *= racePercent
-                    setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
-                    setRacePercent((racePercent * 100).toFixed(0) + '%')
-                    }
-                else if (activeEthnicityTab === 2) { // Ethnicity tab active
-                    setRacePercent('-')
-                    setAncestryPercent('-')
-                    ethnicityData.map(ethnicityCount => {
-                        ethnicity.map(e => {
-                            if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
-                                ethnicityPercent += parseFloat(ethnicityCount["decimal"])
-                            }
-                        })
-                    })
-                        datingPoolCountTemp *= ethnicityPercent
-                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
-                    setEthnicityPercent((ethnicityPercent * 100).toFixed(0) + '%')
-                }
-                else if (activeEthnicityTab === 3) { // Ancestry tab active
-                    setRacePercent('-')
-                    setEthnicityPercent('-')
-                    ancestryData.map(ancestryCount => {
-                        ancestry.map(a => {
-                            if(a.selected === true && a.ancestry === ancestryCount.ancestry) {
-                                ancestryPercent += parseFloat(ancestryCount["decimal"])
-                            }
-                        })
-                    })
-                        datingPoolCountTemp *= ancestryPercent
-                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
-                    setAncestryPercent((ancestryPercent * 100).toFixed(0) + '%')
-                }
+        //             }
+        //         })
+        //         setGenderPercent(((datingPoolCountTemp/agePop) * 100 ).toFixed(0) + '%')
+        //         setAgePercent(((datingPoolCountTemp/totalAgePop) * 100 ).toFixed(0) + '%')
+        //         if (activeEthnicityTab === 1) { // Race tab active
+        //             setEthnicityPercent('-')
+        //             setAncestryPercent('-')
+        //             raceData.map(raceCount => {
+        //                 race.map(r => {
+        //                     if(r.selected === true && r.race === raceCount.race) {
+        //                         racePercent += parseFloat(raceCount["decimal"])
+        //                     }
+        //                 })
+        //             })
+        //             datingPoolCountTemp *= racePercent
+        //             setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+        //             setRacePercent((racePercent * 100).toFixed(0) + '%')
+        //             }
+        //         else if (activeEthnicityTab === 2) { // Ethnicity tab active
+        //             setRacePercent('-')
+        //             setAncestryPercent('-')
+        //             ethnicityData.map(ethnicityCount => {
+        //                 ethnicity.map(e => {
+        //                     if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
+        //                         ethnicityPercent += parseFloat(ethnicityCount["decimal"])
+        //                     }
+        //                 })
+        //             })
+        //                 datingPoolCountTemp *= ethnicityPercent
+        //                 setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+        //             setEthnicityPercent((ethnicityPercent * 100).toFixed(0) + '%')
+        //         }
+        //         else if (activeEthnicityTab === 3) { // Ancestry tab active
+        //             setRacePercent('-')
+        //             setEthnicityPercent('-')
+        //             ancestryData.map(ancestryCount => {
+        //                 ancestry.map(a => {
+        //                     if(a.selected === true && a.ancestry === ancestryCount.ancestry) {
+        //                         ancestryPercent += parseFloat(ancestryCount["decimal"])
+        //                     }
+        //                 })
+        //             })
+        //                 datingPoolCountTemp *= ancestryPercent
+        //                 setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+        //             setAncestryPercent((ancestryPercent * 100).toFixed(0) + '%')
+        //         }
 
-            }
-            else {
-                datingPoolCountTemp = 0
-                setDatingPoolCount(datingPoolCountTemp)
-                }
-            }
-        else {
-            datingPoolCountTemp = 0
-            setDatingPoolCount(datingPoolCountTemp)
-        }
+        //     }
+        //     else {
+        //         datingPoolCountTemp = 0
+        //         setDatingPoolCount(datingPoolCountTemp)
+        //         }
+        //     }
+        // else {
+        //     datingPoolCountTemp = 0
+        //     setDatingPoolCount(datingPoolCountTemp)
+        // }
     }, [ ageData, gender, ageRange, race, ethnicity, ancestry])
 
 
@@ -393,7 +407,6 @@ export default function Calculator() {
                     // ,color:'#89F0DD'
                 }}label={
                     <div>
-                    <p className="tabNameSmall">Sexual</p>
                     <p className="tabNameSmall">Orientation</p>
                     <p className="kpiPercent">{genderPercent}</p>
                     </div>
@@ -444,12 +457,12 @@ export default function Calculator() {
             </Box>
 
                 <TabPanel value="1">
-                    <GenderButtons activeGender={gender} onGenderClick={handleGender}/>
+                    <GenderButtons activeGender={gender} onGenderClick={handleGender} activegenderIdentity={genderIdentity} onGenderIdentityClick={handleGenderIdentity}/>
                 </TabPanel>
                 <TabPanel value="2">
                     <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
                 </TabPanel>
-                <TabPanel value="4">            
+                <TabPanel value="4" sx={{padding:"0"}}>            
                     <Race activeRace={race} onRaceClick={handleRace} activeRaceAll={raceAll} resetter={resetter}/>
                 </TabPanel>
                 <TabPanel value="5" sx={{padding:"0"}}    >        

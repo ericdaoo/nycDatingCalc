@@ -1,0 +1,32 @@
+[
+{
+    "gender": "Women"
+    ,"selected": true
+    ,"color": "linear-gradient(.100turn, #ff4076, #ff9b69)"
+},
+{
+    "gender": "Men"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #005eff, #3dbce3)"
+},
+{
+    "gender": "Trans Women"
+    ,"selected": false
+    ,"color": "#FAEDA5"
+},
+{
+    "gender": "Trans Men"
+    ,"selected": false
+    ,"color": "#FAEDA5"
+},
+{
+    "gender": "Transgender"
+    ,"selected": false
+    ,"color": "#FAEDA5"
+},
+{
+    "gender": "Other"
+    ,"selected": false
+    ,"color": "#FAEDA5"
+}
+]
