@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nycDatingCalc/static/css/main.4b2e883b.css",
+    "main.js": "/nycDatingCalc/static/js/main.40a9bba6.js",
+    "static/js/453.c1a036bc.chunk.js": "/nycDatingCalc/static/js/453.c1a036bc.chunk.js",
+    "index.html": "/nycDatingCalc/index.html",
+    "main.4b2e883b.css.map": "/nycDatingCalc/static/css/main.4b2e883b.css.map",
+    "main.40a9bba6.js.map": "/nycDatingCalc/static/js/main.40a9bba6.js.map",
+    "453.c1a036bc.chunk.js.map": "/nycDatingCalc/static/js/453.c1a036bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4b2e883b.css",
+    "static/js/main.40a9bba6.js"
+  ]
+}
