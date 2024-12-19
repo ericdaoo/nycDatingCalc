@@ -3,30 +3,36 @@
     "gender": "Women"
     ,"selected": true
     ,"color": "linear-gradient(.100turn, #ff4076, #ff9b69)"
+    ,"column": 3
 },
 {
     "gender": "Men"
     ,"selected": false
     ,"color": "linear-gradient(.100turn, #005eff, #3dbce3)"
+    ,"column": 2
 },
 {
     "gender": "Trans Women"
     ,"selected": false
-    ,"color": "#FAEDA5"
+    ,"color": "linear-gradient(.100turn, #F5ABBA, #FFCED7)"
+    ,"column": 3
 },
 {
     "gender": "Trans Men"
     ,"selected": false
-    ,"color": "#FAEDA5"
+    ,"color": "linear-gradient(.100turn, #59CFFA, #8DE1FF)"
+    ,"column": 2
 },
 {
     "gender": "Transgender"
     ,"selected": false
-    ,"color": "#FAEDA5"
+    ,"color": "linear-gradient(.100turn, #F5ABBA, #59CFFA)"
+    ,"column": 1
 },
 {
     "gender": "Other"
     ,"selected": false
-    ,"color": "#FAEDA5"
+    ,"color": "linear-gradient(.100turn, #9C59D1, #FFF42F)"
+    ,"column": 1
 }
 ]

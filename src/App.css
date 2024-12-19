@@ -39,42 +39,45 @@ p.tabNameSmall {
   padding: 2px 10px 2px 10px;
 }
 
-.genderButtons {
-  height: 500px;
-  width: 100vw;
+.description {
+  margin: 0 0 0 15px;
+}
 
-  width: auto;
+.genderButton {
+  width: 150px;
+}
+
+.genderButtons {
+  /* min-width: 170px; */
+  overflow:scroll;
+
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   align-content: flex-start;
-  align-items: flex-start;
-  overflow-x: scroll;
-  /* padding: 10px; */
-  /* padding: 15px 10px 20px 15px; */
-  /* gap: 10px; */
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(250, 250, 250);
+  border-radius: 20px;
+  padding: 12px 0 12px 10px;
 }
 
 .genderContainer {
-  /* position:static; */
-  width: 100%;
-  height: 100vh;
-  padding: 25px 0 25px 0;
-  /* display: flex; */
-  /* overflow: scroll;  */
-/* height: 500px; */
-  /* width: 100vw; */
-  /* padding: 0 0 20px 0; */
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  align-content: flex-start;
+  align-items: flex-start;
+
   /* min-width: 0; */
   /* display: flex;
   flex-direction: row;
   overflow: scroll;
-  overflow-y: scroll;
   align-content: flex-start;
-  align-items: flex-start;
-  overscroll-behavior-y: none;
-  overscroll-behavior-x: none; */
+  align-items: flex-start; */
+  /* justify-content: center; */
 
-  /* flex-wrap: wrap; */
+
 }
 
 

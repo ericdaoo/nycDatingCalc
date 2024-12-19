@@ -4,6 +4,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 function GenderButton({ gender, onClick, backgroundColor }) {
     return(
+        <div className="genderButton">
     <Button 
         onClick={(event) => {
             onClick({
@@ -12,8 +13,9 @@ function GenderButton({ gender, onClick, backgroundColor }) {
             }}
         id={gender.gender}
         className="button"
-        sx={{ width:140
-            ,height: "50px"
+        sx={{ 
+            minWidth:"130px",
+            height: "50px"
             ,color: "white"
             ,background: backgroundColor
             // ,backgroundColor:{backgroundColor}
@@ -21,26 +23,23 @@ function GenderButton({ gender, onClick, backgroundColor }) {
             ,boxShadow: '0 2px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.02)'
             ,margin: "5px"
 
-            // ,transition: "transform .2s, box-shadow .2s",
-            //             '&:hover': {
-            //                 // transform: "scale(1.02) perspective(0px)",
-            //                 boxShadow: '0 0 0 10px rgba(145, 145, 145, 0.16)',
-            //               },
              
         }}
     >
             {gender.gender}
     </Button>
+    </div>
     );
 };
 
 export default function GenderButtons({ activeGender, onGenderClick }) {
 
     return (
-        <div >
-        <div>
-            <p>Interested in</p>
+            <div className="checkBoxContainerParent"> 
+            
+            <p className="description">Interested in</p>
             <div className="genderContainer">
+
             <div className="genderButtons">
 
                 {activeGender.map((gender) => (
@@ -50,7 +49,7 @@ export default function GenderButtons({ activeGender, onGenderClick }) {
             </div>
             </div>
         </div>
-      </div>
+
     );
   }
 
