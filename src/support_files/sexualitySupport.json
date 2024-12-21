@@ -1,0 +1,32 @@
+[
+{
+    "sexuality": "Straight"
+    ,"selected": true
+    ,"color": "linear-gradient(.100turn, #FF8243, #32CFFF)"
+    ,"column": 3
+},
+{
+    "sexuality": "Gay or Lesbian"
+    ,"selected": false
+    ,"color": "linear-gradient(.120turn, #E756A3, #4ABDA3)"
+    ,"column": 2
+},
+{
+    "sexuality": "Bisexual"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #3F76F7, #FF3B96)"
+    ,"column": 3
+},
+{
+    "sexuality": "Other"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #4ABDFF, #FFEF97, #FF4FA1)"
+    ,"column": 2
+},
+{
+    "sexuality": "Unsure"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #B67EDD, #A9D378)"
+    ,"column": 1
+}
+]

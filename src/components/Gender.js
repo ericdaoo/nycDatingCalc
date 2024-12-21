@@ -18,12 +18,9 @@ function GenderButton({ gender, onClick, backgroundColor }) {
             height: "50px"
             ,color: "white"
             ,background: backgroundColor
-            // ,backgroundColor:{backgroundColor}
             ,borderRadius: 28
             ,boxShadow: '0 2px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.02)'
             ,margin: "5px"
-
-             
         }}
     >
             {gender.gender}
@@ -32,18 +29,58 @@ function GenderButton({ gender, onClick, backgroundColor }) {
     );
 };
 
-export default function GenderButtons({ activeGender, onGenderClick }) {
+function SexualityButton({ sexuality, onClick, backgroundColor }) {
+    return(
+        <div className="genderButton">
+    <Button 
+        onClick={(event) => {
+            onClick({
+                    ...sexuality
+                });
+            }}
+        id={sexuality.sexuality}
+        className="button"
+        sx={{ 
+            minWidth:"130px",
+            height: "50px"
+            ,color: "white"
+            ,background: backgroundColor
+            ,borderRadius: 28
+            ,boxShadow: '0 2px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.02)'
+            ,margin: "5px"
+        }}
+    >
+            {sexuality.sexuality}
+    </Button>
+    </div>
+    );
+};
+
+
+export default function GenderButtons({ activeGender, onGenderClick, activeSexuality, onSexualityClick }) {
 
     return (
-            <div className="checkBoxContainerParent"> 
+        <div className="checkBoxContainerParent"> 
             
-            <p className="description">Interested in</p>
             <div className="genderContainer">
+            <p className="description">I'm interested in</p>
 
             <div className="genderButtons">
 
                 {activeGender.map((gender) => (
-                    <GenderButton key={gender.race} gender={gender} onClick={onGenderClick} backgroundColor={gender.selected ? gender.color : "linear-gradient(.100turn, #212121, #808080)"}
+                    <GenderButton key={gender.gender} gender={gender} onClick={onGenderClick} backgroundColor={gender.selected ? gender.color : "linear-gradient(.100turn, #212121, #808080)"}
+                        />
+                 ))}
+            </div>
+        </div>
+
+
+            <div className="genderContainer">
+            <p className="description">...who identify as</p>
+            <div className="genderButtons">
+
+                {activeSexuality.map((sexuality) => (
+                    <SexualityButton key={sexuality.sexuality} sexuality={sexuality} onClick={onSexualityClick} backgroundColor={sexuality.selected ? sexuality.color : "linear-gradient(.100turn, #212121, #808080)"}
                         />
                  ))}
             </div>

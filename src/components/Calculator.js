@@ -18,6 +18,7 @@ import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 import DataPull from "./DataPull"
 import genderSupport from "../support_files/genderSupport.json"
 import GenderButtons from "./Gender"
+import sexualitySupport from "../support_files/sexualitySupport.json"
 import AgeSlider from "./Age"
 import Race from "./Race"
 import raceSupport from "../support_files/raceSupport.json"
@@ -39,9 +40,11 @@ export default function Calculator() {
     const [raceData, setRaceData] = useState();
     const [ethnicityData, setEthnicityData] = useState();
     const [ancestryData, setAncestryData] = useState();
+    const [sexualityData, setSexualityData] = useState();
     function handlePull(newData) {
         setAgeData(newData[0])
         setGenderIdentityData(newData[4])
+        setSexualityData(newData[5])
         setRaceData(newData[1])
         setEthnicityData(newData[2])
         setAncestryData(newData[3])
@@ -60,9 +63,18 @@ export default function Calculator() {
         setGender(genderTemp)
     };
 
-    // function handleGenderIdentity(newGenderIdentity) {
-    //     setGenderIdentity(newGenderIdentity)
-    // };
+    const [sexuality, setSexuality] = useState(sexualitySupport);
+    function handleSexuality(newSexuality) {
+        const sexualityTemp = 
+            sexuality.map((s) => {
+                    if (s.sexuality === newSexuality.sexuality) {
+                        return {...newSexuality, selected: !newSexuality.selected};
+                    } else {
+                        return s;
+                    }
+                })
+        setSexuality(sexualityTemp)
+    };
 
     const [ageRange, setAgeRange] = useState([26,32]);
     function handleAge(newAgeRange) {
@@ -312,9 +324,30 @@ export default function Calculator() {
         let datingPoolCountTemp = 0;
 
 
-        let bothGenderPop = 0;
-        let menPop = 0;
-        let womenPop = 0;
+
+        // Gender Identity percent
+        let menPercent = 0;
+        let transMenPercent = 0;
+        let womenPercent = 0;
+        let transWomenPercent = 0;
+        let transgenderPercent = 0;
+        let otherPercent = 0;
+
+        // Sexual Orientation percents for each gender identity
+        let menSexualityPercent = 0;
+        let transMenSexualityPercent = 0;
+        let womenSexualityPercent = 0;
+        let transWomenSexualityPercent = 0;
+        let transgenderSexualityPercent = 0;
+        let otherSexualityPercent = 0;
+
+        // Gender Identity count * Sexual Orientation percents for each gender identity
+        let finalMenPop = 0;
+        let finalWomenPop = 0;
+        let finalBothPop = 0;
+        
+
+
         let racePercent = 0;
         let ethnicityPercent = 0;
         let ancestryPercent = 0;
@@ -322,16 +355,35 @@ export default function Calculator() {
 
         if(ageData != false) { // Wait for DataPull Component to finish first.
             if(!gender.every((g) => g.selected === false)) {
-                console.log("on")
                 genderIdentityData.map(genderCount => {
                     gender.map(g => {
                         if(g.selected === true && g.gender === genderCount.gender) {
-                            if(g.column === 1) {bothGenderPop += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.column === 2) {menPop += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.column === 3) {womenPop += parseFloat(genderCount["pop_decimal"])}
+                            if(g.gender === "Men") {menPercent += parseFloat(genderCount["pop_decimal"])}
+                            else if(g.gender === "Trans Men") {transMenPercent += parseFloat(genderCount["pop_decimal"])}
+                            else if(g.gender === "Women") {womenPercent += parseFloat(genderCount["pop_decimal"])}
+                            else if(g.gender === "Trans Women") {transWomenPercent += parseFloat(genderCount["pop_decimal"])}
+                            else if(g.gender === "Transgender") {transgenderPercent += parseFloat(genderCount["pop_decimal"])}
+                            else if(g.gender === "Other") {otherPercent += parseFloat(genderCount["pop_decimal"])}
                         }
                     })
                 })
+
+                sexualityData.map(sexualityCount => {
+                    sexuality.map(s => {
+                        if(s.selected === true && s.sexuality === sexualityCount.sexuality){
+                            switch(true){
+                            case(sexualityCount["menPercent"] !== null): menSexualityPercent += parseFloat(sexualityCount["menPercent"])
+                            case(sexualityCount["transMenPercent"] !== null): transMenSexualityPercent += parseFloat(sexualityCount["transMenPercent"])
+                            case(sexualityCount["womenPercent"] !== null): womenSexualityPercent += parseFloat(sexualityCount["womenPercent"])
+                            case(sexualityCount["transWomenPercent"] !== null): transWomenSexualityPercent += parseFloat(sexualityCount["transWomenPercent"])
+                            case(sexualityCount["transgenderPercent"] !== null): transgenderSexualityPercent += parseFloat(sexualityCount["transgenderPercent"])
+                            case(sexualityCount["otherPercent"] !== null): otherSexualityPercent += parseFloat(sexualityCount["otherPercent"])
+                            break
+                            }
+                    }
+                }
+            )
+        })
 
                 ageData.map(ageCount => {
                     totalAgePop += parseInt(Object.values(ageCount)[1].replace(",", ""))
@@ -343,10 +395,23 @@ export default function Calculator() {
                     }
                 })
 
+                womenSexualityPercent = womenSexualityPercent > 1 ? 1 : womenSexualityPercent
+                transWomenSexualityPercent = transWomenSexualityPercent > 1 ? 1 : transWomenSexualityPercent
+                menSexualityPercent = menSexualityPercent > 1 ? 1 : menSexualityPercent
+                transMenSexualityPercent = transMenSexualityPercent > 1 ? 1 : transMenSexualityPercent
+                transgenderSexualityPercent = transgenderSexualityPercent > 1 ? 1 : transgenderSexualityPercent
+                otherSexualityPercent = otherSexualityPercent > 1 ? 1 : otherSexualityPercent
+
+
+                finalWomenPop = ((womenPercent * womenSexualityPercent) + (transWomenPercent * transWomenSexualityPercent))
+                finalMenPop = ((menPercent * menSexualityPercent) + (transMenPercent * transMenSexualityPercent))
+                finalBothPop = ((transgenderPercent * transgenderSexualityPercent) + (otherPercent * otherSexualityPercent))
+
+
                 datingPoolCountTemp = (
-                    (datingPoolCountMenTemp * menPop)
-                    + (datingPoolCountWomenTemp * womenPop)
-                    + (datingPoolCountBothTemp * bothGenderPop)
+                    (datingPoolCountMenTemp * finalMenPop)
+                    + (datingPoolCountWomenTemp * finalWomenPop)
+                    + (datingPoolCountBothTemp * finalBothPop)
                 )
 
                 setGenderPercent(((datingPoolCountTemp/datingPoolCountBothTemp) * 100 ).toFixed(0) + '%')
@@ -395,7 +460,6 @@ export default function Calculator() {
                 }
             }
             else {
-                console.log("test")
                 datingPoolCountTemp = 0
                 setDatingPoolCount(datingPoolCountTemp)
                 setAgePercent(0);
@@ -409,7 +473,7 @@ export default function Calculator() {
             datingPoolCountTemp = 0
             setDatingPoolCount(datingPoolCountTemp)
         }
-    }, [ ageData, gender, ageRange, race, ethnicity, ancestry])
+    }, [ ageData, gender, ageRange, race, ethnicity, ancestry, sexuality])
 
 
     // This state is used by the TabContext component that controls the menu tabs
@@ -487,10 +551,11 @@ export default function Calculator() {
             </Box>
 
                 <TabPanel value="1" sx={{padding:"0"}}>
-                    <GenderButtons activeGender={gender} onGenderClick={handleGender} 
+                    <GenderButtons activeGender={gender} onGenderClick={handleGender}
+                    activeSexuality={sexuality} onSexualityClick={handleSexuality} 
                     />
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value="2" sx={{padding:"0"}}>
                     <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
                 </TabPanel>
                 <TabPanel value="4" sx={{padding:"0"}}>            

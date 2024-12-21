@@ -19,6 +19,7 @@ export default function DataPull({ onPull }) {
                         // ,'481252969' // Income
                         ,'1439753027' // Ancestry
                         ,'117376825' // Gender Identity
+                        ,'1392669126' // Sexual Orientation
 
         ]
 

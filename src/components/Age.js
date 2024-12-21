@@ -142,7 +142,11 @@ export default function AgeSlider({ ageRange, onSlide, activeGender }) {
   };
 
   return (
-    <Box sx={{ width: 300, margin: 1, padding: "12px 0 0 0"}}>
+    <div className="checkBoxContainerParentRace"> 
+            
+    <div className="ageContainer">
+    <p className="sliderDescription">Desired age range</p>
+    <Box sx={{ width: "300px", margin: "12px 0 0 0", padding: "12px 0 0 0"}}>
       <CustomAgeSlider
         // aria-label="ios slider"
         // getAriaLabel={() => 'Age range'}
@@ -156,5 +160,7 @@ export default function AgeSlider({ ageRange, onSlide, activeGender }) {
         activegender={activeGender}
       />
     </Box>
+    </div>
+    </div>
   );
 }
