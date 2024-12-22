@@ -1,0 +1,32 @@
+[
+{
+    "marriage": "Never Married"
+    ,"selected": true
+    ,"color": "linear-gradient(.100turn, #FF8243, #32CFFF)"
+    ,"column": 3
+},
+{
+    "marriage": "Divorced"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #B67EDD, #A9D378)"
+    ,"column": 1
+},
+{
+    "marriage": "Widowed"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #3F76F7, #FF3B96)"
+    ,"column": 3
+},
+{
+    "marriage": "Separated"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #4ABDFF, #FFEF97, #FF4FA1)"
+    ,"column": 2
+},
+{
+    "marriage": "Now Married"
+    ,"selected": false
+    ,"color": "linear-gradient(.120turn, #E756A3, #4ABDA3)"
+    ,"column": 2
+}
+]

@@ -32,6 +32,14 @@ p.tabNameSmall {
   padding: 0;
 }
 
+p.source {
+  text-align: end;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgb(221, 221, 221);
+  margin: 15px 0 0 0;
+}
+
 .scrollHUD {
   display: flex;
   flex-direction: row;
@@ -44,7 +52,7 @@ p.tabNameSmall {
 }
 
 .description {
-  margin: 0 0 0 15px;
+  margin: 0 0 5px 10px;
 }
 
 .sliderDescription {
@@ -58,6 +66,9 @@ p.tabNameSmall {
 .genderButtons {
   /* min-width: 170px; */
   overflow:visible;
+  overflow: scroll;
+  /* margin: -0 -20px 0px -20px; */
+
 
   display: flex;
   flex-direction: row;
@@ -72,9 +83,8 @@ p.tabNameSmall {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   /* padding: 12px 0 12px 10px; */
-  padding: 20px 20px 20px 20px;
+  padding: 20px 15px 5px 15px;
   margin: 20px 20px 20px 20px;
-  overflow: scroll;
 
   /* display: flex;
   flex-direction: row;
@@ -121,8 +131,15 @@ p.tabNameSmall {
   height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
-  
-  
+}
+
+.wrapperScroll {
+
+  /* display: fixed; */
+  /* position: static; */
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .main-container {
@@ -145,6 +162,7 @@ p.tabNameSmall {
 .raceContainer {
   /* min-width: 170px;
 
+
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -152,18 +170,20 @@ p.tabNameSmall {
   align-items: flex-start;
   justify-content: flex-start; */
   /* width: fit-content; */
+  width: 100%;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.05) 0px 0px 8px;
   /* box-shadow: rgba(0, 0, 0, 0.08) 0px 5px 15px 0px; */
   margin: 4px 0px 4px 0px;
   padding: 5px 0px 5px 15px;
 
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  border-radius: 20px;
 
 
 }
 
 .ethnicityHeader {
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -181,10 +201,12 @@ p.tabNameSmall {
   width: fit-content;
   /* width: autol */
   margin: 0px 0px 0px 15px;
-  padding: 0px 0px 5px 15px;
+  padding: 5px 0px 5px 20px;
 
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.05) 0px 0px 8px;
+
 }
 
 .checkBoxContainerParentRace {
@@ -193,7 +215,7 @@ p.tabNameSmall {
   /* height: 100%; */
   padding: 20px 20px 20px 20px;
   margin: 20px 20px 20px 20px;
-  border-radius: 15px;
+  border-radius: 20px;
 
 }
 
@@ -202,7 +224,7 @@ p.tabNameSmall {
   width: 900px;
   height: 100%;
   padding: 25px 0 0 0;
-  overflow: scroll;
+  overflow: hidden;
 
   /* display: flex;
   overflow: scroll; */
@@ -216,11 +238,13 @@ p.tabNameSmall {
 
   padding: 15px 10px 20px 15px;
   gap: 10px;
+  height: 100%;
 
   /* min-width: 0; */
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   align-content: flex-start;
   align-items: flex-start;
   /* justify-content: center; */
@@ -230,8 +254,8 @@ p.tabNameSmall {
 }
 
 .checkBoxParent {
-  min-width: 170px;
-
+  /* min-width: 170px; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -239,11 +263,14 @@ p.tabNameSmall {
   align-items: flex-start;
   justify-content: flex-start;
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
-  padding: 5px 0 10px 10px;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+
 }
 
 .checkBoxChild {
+  min-width: 170px;
+
   display: inline-table;
   word-wrap:normal;
   word-break:keep-all;
@@ -258,7 +285,7 @@ p.tabNameSmall {
   /* align-items: flex-start; */
 
   /* align-content: baseline; */
-  padding: 0px 0px 0px 20px;
+  margin: 0px 0px 0px 20px;
 }
 
 @media screen and (max-width: 700px) {
@@ -283,10 +310,10 @@ p.tabNameSmall {
 
   .checkBoxContainerParent {
     width: 100vw;
-    height: 100%;
+    /* height: 100vh; */
     padding: 25px 0 25px 0;
     /* display: flex; */
-    overflow: scroll;
+    overflow: hidden;
     /* align-content: flex-start;
     align-items: flex-start;
     justify-content: flex-start; */
@@ -297,7 +324,7 @@ p.tabNameSmall {
     /* position:static; */
 
   /* width: 500px; */
-    height: 100vw;
+    /* height: 100vw; */
     /* padding: 0 0 20px 0; */
     /* min-width: 0; */
     display: flex;
@@ -306,10 +333,18 @@ p.tabNameSmall {
     /* overflow-y: scroll; */
     align-content: flex-start;
     align-items: flex-start;
-    overscroll-behavior-y: none;
-    overscroll-behavior-x: none;
+    /* overflow-x: scroll; */
+    overflow-y: hidden;
+    /* overscroll-behavior-y: none;
+    overscroll-behavior-x: none; */
   
     /* flex-wrap: wrap; */
+  }
+
+  .checkBoxParent {
+    height: 400px;
+    /* overflow-y: scroll; */
+
   }
 }
 

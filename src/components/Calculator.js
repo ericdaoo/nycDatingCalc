@@ -17,9 +17,9 @@ import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 
 import DataPull from "./DataPull"
 import genderSupport from "../support_files/genderSupport.json"
-import GenderButtons from "./Gender"
+import Gender from "./Gender"
 import sexualitySupport from "../support_files/sexualitySupport.json"
-import AgeSlider from "./Age"
+import Age from "./Age"
 import Race from "./Race"
 import raceSupport from "../support_files/raceSupport.json"
 import Ethnicity from "./Ethnicity"
@@ -28,6 +28,9 @@ import ethnicityGroupSupport from "../support_files/ethnicityGroupSupport.json"
 import Ancestry from "./Ancestry"
 import ancestrySupport from "../support_files/ancestrySupport.json"
 import ancestryGroupSupport from "../support_files/ancestryGroupSupport.json"
+import marriageSupport from "../support_files/marriageSupport.json"
+import Marriage from "./Marriage"
+
 
 import Test from "./test"
 
@@ -41,13 +44,15 @@ export default function Calculator() {
     const [ethnicityData, setEthnicityData] = useState();
     const [ancestryData, setAncestryData] = useState();
     const [sexualityData, setSexualityData] = useState();
+    const [marriageData, setMarriageData] = useState();
     function handlePull(newData) {
         setAgeData(newData[0])
-        setGenderIdentityData(newData[4])
-        setSexualityData(newData[5])
         setRaceData(newData[1])
         setEthnicityData(newData[2])
         setAncestryData(newData[3])
+        setGenderIdentityData(newData[4])
+        setSexualityData(newData[5])
+        setMarriageData(newData[6])
     };
 
     const [gender, setGender] = useState(genderSupport);
@@ -82,7 +87,7 @@ export default function Calculator() {
     };
 
     const [activeEthnicityTab, setActiveEthnicityTab] = useState(1)
-    //👥👥👥
+    //👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥👥
     const [raceAll, setRaceAll] = useState(true);
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
@@ -100,7 +105,7 @@ export default function Calculator() {
         if(raceTemp.every((e) => e.selected === true)) {setRaceAll(true)}
         else {setRaceAll(false)}
     };
-    //🌎🌎🌎
+    //🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎
     const [ethnicityAll, setEthnicityAll] = useState(true);
     const [ethnicity, setEthnicity] = useState(ethnicitySupport);
     function handleEthnicity(newEthnicity) {
@@ -179,7 +184,7 @@ export default function Calculator() {
         else {setEthnicityAll(false)}
     };
 
-    //🌻🌻🌻
+    //🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻
     const [ancestryAll, setAncestryAll] = useState(true);
     const [ancestry, setAncestry] = useState(ancestrySupport);
     function handleAncestry(newAncestry) {
@@ -257,6 +262,23 @@ export default function Calculator() {
         if(ancestryTemp.every((e) => e.selected === true)) {setAncestryAll(true)}
         else {setAncestryAll(false)}
     };
+
+    // 💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍
+    const [marriage, setMarriage] = useState(marriageSupport);
+    function handleMarriage(newMarriage) {
+        const marriageTemp = 
+            marriage.map((m) => {
+                    if (m.marriage === newMarriage.marriage) {
+                        return {...newMarriage, selected: !newMarriage.selected};
+                    } else {
+                        return m;
+                    }
+                })
+        setMarriage(marriageTemp)
+    };
+
+
+
 
 
     // Helper Functions
@@ -551,12 +573,13 @@ export default function Calculator() {
             </Box>
 
                 <TabPanel value="1" sx={{padding:"0"}}>
-                    <GenderButtons activeGender={gender} onGenderClick={handleGender}
+                    <Gender activeGender={gender} onGenderClick={handleGender}
                     activeSexuality={sexuality} onSexualityClick={handleSexuality} 
+                    activeMarriage={marriage} onMarriageClick={handleMarriage}
                     />
                 </TabPanel>
                 <TabPanel value="2" sx={{padding:"0"}}>
-                    <AgeSlider activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
+                    <Age activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
                 </TabPanel>
                 <TabPanel value="4" sx={{padding:"0"}}>            
                     <Race activeRace={race} onRaceClick={handleRace} activeRaceAll={raceAll} resetter={resetter}/>

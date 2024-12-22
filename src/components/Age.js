@@ -118,7 +118,7 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
   // }),
 }));
 
-export default function AgeSlider({ ageRange, onSlide, activeGender }) {
+export default function Age({ ageRange, onSlide, activeGender }) {
   const value = ageRange.slice()
   // const [value, setValue] = React.useState(ageRange);
   const minDistance = 2;

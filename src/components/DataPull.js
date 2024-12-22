@@ -20,7 +20,7 @@ export default function DataPull({ onPull }) {
                         ,'1439753027' // Ancestry
                         ,'117376825' // Gender Identity
                         ,'1392669126' // Sexual Orientation
-
+                        ,'21927911' // Marital Status
         ]
 
         const responses = [];

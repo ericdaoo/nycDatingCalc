@@ -6,6 +6,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function CheckBoxChild({ ethnicity, onClick, label, color }){
     return (
+    <div className="raceContainer">
+
         <FormControlLabel
     control={
         <Checkbox
@@ -41,7 +43,7 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
             }}
         />}
         sx={{
-            padding: "12px 0 0 0",
+            // padding: "12px 0 0 0",
         "& .MuiTypography-root": {
             lineHeight: "1.3"
           }
@@ -49,6 +51,7 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
     label={label}
     >
     </FormControlLabel>
+    </div>
     )
 }
 
@@ -56,6 +59,8 @@ function CheckBoxChild({ ethnicity, onClick, label, color }){
 function CheckBoxParent({ group, onClick, label, color, children, onClickChild }){
 return (
     <div className="checkBoxParent">
+            <div className="raceContainer">
+
     <FormControlLabel sx={{
                 "& .MuiTypography-root": {
                     fontWeight: "550"
@@ -100,6 +105,7 @@ return (
          label={label}
     >
      </FormControlLabel>
+     </div>
 
      <div className="checkBoxChild">
             {children.map((child) => (
