@@ -139,13 +139,8 @@ export default function Gender({ activeGender, onGenderClick, activeSexuality, o
 
 
         </div>
-        </div>
+
+       </div>
 
     );
 }
-
-
-
-// Note 1
-//Every single time the handleClick function fires, the genderValue is calculated using the states of the activeWomenButton and activeMenButton state objects, and then sends this updated genderValue through the onGenderClick prop to the parent component. 
-//The reason that the useEffect() function is necessary is because originally, I had the setGenderValue and onGenderClick in the handleClick() function, but there was an issue with the genderValue being set before the activeWomenButton or activeMenButton switched from true to false. For example, lets say both the men and women buttons havent been clicked yet (both states are true). Once either of them are clicked, the setGenderValue function would fire and would evaluate that both the men and women buttons are still true, and then it would send the genderValue through the prop to the parent component, THEN, the men or women button would toggle to false, but at that point, it was too late because the genderValue sent reflected the state of the two gender buttons before either of them were clicked. 

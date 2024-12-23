@@ -2,31 +2,31 @@
 {
     "marriage": "Never Married"
     ,"selected": true
-    ,"color": "linear-gradient(.100turn, #FF8243, #32CFFF)"
+    ,"color": "linear-gradient(.100turn, #fb6f92, #ffb3c6)"
     ,"column": 3
 },
 {
     "marriage": "Divorced"
     ,"selected": false
-    ,"color": "linear-gradient(.100turn, #B67EDD, #A9D378)"
+    ,"color": "linear-gradient(.100turn, #00b4d8, #caf0f8)"
     ,"column": 1
-},
-{
-    "marriage": "Widowed"
-    ,"selected": false
-    ,"color": "linear-gradient(.100turn, #3F76F7, #FF3B96)"
-    ,"column": 3
 },
 {
     "marriage": "Separated"
     ,"selected": false
-    ,"color": "linear-gradient(.100turn, #4ABDFF, #FFEF97, #FF4FA1)"
+    ,"color": "linear-gradient(.100turn, #0077b6, #00b4d8)"
     ,"column": 2
+},
+{
+    "marriage": "Widowed"
+    ,"selected": false
+    ,"color": "linear-gradient(.100turn, #03045e, #0096c7)"
+    ,"column": 3
 },
 {
     "marriage": "Now Married"
     ,"selected": false
-    ,"color": "linear-gradient(.120turn, #E756A3, #4ABDA3)"
+    ,"color": "linear-gradient(.120turn, #ff4d6d, #bf0603)"
     ,"column": 2
 }
 ]

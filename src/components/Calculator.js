@@ -29,13 +29,16 @@ import Ancestry from "./Ancestry"
 import ancestrySupport from "../support_files/ancestrySupport.json"
 import ancestryGroupSupport from "../support_files/ancestryGroupSupport.json"
 import marriageSupport from "../support_files/marriageSupport.json"
-import Marriage from "./Marriage"
-
 
 import Test from "./test"
 
 
 export default function Calculator() {
+
+    document.addEventListener('DOMContentLoaded', function () { 
+        let bodyBackgroundColor = "39ff14"
+        // getComputedStyle(document.body).backgroundColor; 
+        document.getElementById('themeMetaTag').setAttribute('content', bodyBackgroundColor); });
 
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
@@ -57,31 +60,31 @@ export default function Calculator() {
 
     const [gender, setGender] = useState(genderSupport);
     function handleGender(newGender) {
-        const genderTemp = 
+        const genderTemp =
             gender.map((g) => {
-                    if (g.gender === newGender.gender) {
-                        return {...newGender, selected: !newGender.selected};
-                    } else {
-                        return g;
-                    }
-                })
+                if (g.gender === newGender.gender) {
+                    return { ...newGender, selected: !newGender.selected };
+                } else {
+                    return g;
+                }
+            })
         setGender(genderTemp)
     };
 
     const [sexuality, setSexuality] = useState(sexualitySupport);
     function handleSexuality(newSexuality) {
-        const sexualityTemp = 
+        const sexualityTemp =
             sexuality.map((s) => {
-                    if (s.sexuality === newSexuality.sexuality) {
-                        return {...newSexuality, selected: !newSexuality.selected};
-                    } else {
-                        return s;
-                    }
-                })
+                if (s.sexuality === newSexuality.sexuality) {
+                    return { ...newSexuality, selected: !newSexuality.selected };
+                } else {
+                    return s;
+                }
+            })
         setSexuality(sexualityTemp)
     };
 
-    const [ageRange, setAgeRange] = useState([26,32]);
+    const [ageRange, setAgeRange] = useState([30, 35]);
     function handleAge(newAgeRange) {
         setAgeRange(newAgeRange)
     };
@@ -92,7 +95,7 @@ export default function Calculator() {
     const [race, setRace] = useState(raceSupport);
     function handleRace(newRace) {
         setActiveEthnicityTab(1)
-        const raceTemp = 
+        const raceTemp =
             race.map((r) => {
                 if (r.race === newRace.race) {
                     return newRace;
@@ -102,8 +105,8 @@ export default function Calculator() {
             })
         setRace(raceTemp)
 
-        if(raceTemp.every((e) => e.selected === true)) {setRaceAll(true)}
-        else {setRaceAll(false)}
+        if (raceTemp.every((e) => e.selected === true)) { setRaceAll(true) }
+        else { setRaceAll(false) }
     };
     //🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎🌎
     const [ethnicityAll, setEthnicityAll] = useState(true);
@@ -112,7 +115,7 @@ export default function Calculator() {
         setActiveEthnicityTab(2)
         // First update selected ethnicity checkbox.
         // Note 1
-        const ethnicityTemp = 
+        const ethnicityTemp =
             ethnicity.map((e) => {
                 if (e.ethnicity === newEthnicity.ethnicity) {
                     return newEthnicity;
@@ -122,33 +125,38 @@ export default function Calculator() {
             })
         setEthnicity(ethnicityTemp)
 
-        if(ethnicityTemp.every((e) => e.selected === true)) {setEthnicityAll(true)}
-        else {setEthnicityAll(false)}
+        if (ethnicityTemp.every((e) => e.selected === true)) { setEthnicityAll(true) }
+        else { setEthnicityAll(false) }
 
         // Obtain only ethnicities in ethnicity group of interest.
-        const ethnicityGroupTemp = [] 
-            ethnicityTemp.map((e) => {
-                if (e.ethnicity_group === newEthnicity.ethnicity_group) {
-                    return ethnicityGroupTemp.push(e);
-                }
-            })
+        const ethnicityGroupTemp = []
+        ethnicityTemp.map((e) => {
+            if (e.ethnicity_group === newEthnicity.ethnicity_group) {
+                return ethnicityGroupTemp.push(e);
+            }
+        })
         // Determine whether all, none, or some ethnicity check boxes of an ethnicity group are selected.
         const allChildrenSelected = () => {
-            if(ethnicityGroupTemp.every((e) => e.selected === true)) {return true}
-            else if(ethnicityGroupTemp.every((e) => e.selected === false)) {return false}
-            else {return "indeterminate"}
+            if (ethnicityGroupTemp.every((e) => e.selected === true)) { return true }
+            else if (ethnicityGroupTemp.every((e) => e.selected === false)) { return false }
+            else { return "indeterminate" }
         }
         // Update ethnicityGroup selected value based on if the ethnicity that was just selected made it so that all, none, or some of the ethnicity group's ethnicity boxes were selected.
         setEthnicityGroup(
             ethnicityGroup.map((g) => {
                 if (g.ethnicity_group === newEthnicity.ethnicity_group) {
-                    if(allChildrenSelected() === true || allChildrenSelected() === false)  
-                        {return {...g
-                        ,selected: allChildrenSelected()
-                        ,indeterminate: false};
+                    if (allChildrenSelected() === true || allChildrenSelected() === false) {
+                        return {
+                            ...g
+                            , selected: allChildrenSelected()
+                            , indeterminate: false
+                        };
+                    }
+                    else {
+                        return {
+                            ...g
+                            , indeterminate: true
                         }
-                    else {return {...g
-                        ,indeterminate: true}
                     }
                 } else {
                     return g;
@@ -169,10 +177,10 @@ export default function Calculator() {
                 }
             })
         )
-        const ethnicityTemp = 
+        const ethnicityTemp =
             ethnicity.map((e) => {
                 if (e.ethnicity_group === newEthnicityGroup.ethnicity_group) {
-                    e.selected = newEthnicityGroup.selected ? true:false
+                    e.selected = newEthnicityGroup.selected ? true : false
                     return e;
                 } else {
                     return e;
@@ -180,8 +188,8 @@ export default function Calculator() {
             })
         setEthnicity(ethnicityTemp)
 
-        if(ethnicityTemp.every((e) => e.selected === true)) {setEthnicityAll(true)}
-        else {setEthnicityAll(false)}
+        if (ethnicityTemp.every((e) => e.selected === true)) { setEthnicityAll(true) }
+        else { setEthnicityAll(false) }
     };
 
     //🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻
@@ -191,7 +199,7 @@ export default function Calculator() {
         setActiveEthnicityTab(3)
         // First update selected ancestry checkbox.
         // Note 1
-        const ancestryTemp = 
+        const ancestryTemp =
             ancestry.map((e) => {
                 if (e.ancestry === newAncestry.ancestry) {
                     return newAncestry;
@@ -201,33 +209,38 @@ export default function Calculator() {
             })
         setAncestry(ancestryTemp)
 
-        if(ancestryTemp.every((e) => e.selected === true)) {setAncestryAll(true)}
-        else {setAncestryAll(false)}
+        if (ancestryTemp.every((e) => e.selected === true)) { setAncestryAll(true) }
+        else { setAncestryAll(false) }
 
         // Obtain only ethnicities in ancestry group of interest.
-        const ancestryGroupTemp = [] 
-            ancestryTemp.map((e) => {
-                if (e.ancestry_group === newAncestry.ancestry_group) {
-                    return ancestryGroupTemp.push(e);
-                }
-            })
+        const ancestryGroupTemp = []
+        ancestryTemp.map((e) => {
+            if (e.ancestry_group === newAncestry.ancestry_group) {
+                return ancestryGroupTemp.push(e);
+            }
+        })
         // Determine whether all, none, or some ancestry check boxes of an ancestry group are selected.
         const allChildrenSelected = () => {
-            if(ancestryGroupTemp.every((e) => e.selected === true)) {return true}
-            else if(ancestryGroupTemp.every((e) => e.selected === false)) {return false}
-            else {return "indeterminate"}
+            if (ancestryGroupTemp.every((e) => e.selected === true)) { return true }
+            else if (ancestryGroupTemp.every((e) => e.selected === false)) { return false }
+            else { return "indeterminate" }
         }
         // Update ancestryGroup selected value based on if the ancestry that was just selected made it so that all, none, or some of the ancestry group's ancestry boxes were selected.
         setAncestryGroup(
             ancestryGroup.map((g) => {
                 if (g.ancestry_group === newAncestry.ancestry_group) {
-                    if(allChildrenSelected() === true || allChildrenSelected() === false)  
-                        {return {...g
-                        ,selected: allChildrenSelected()
-                        ,indeterminate: false};
+                    if (allChildrenSelected() === true || allChildrenSelected() === false) {
+                        return {
+                            ...g
+                            , selected: allChildrenSelected()
+                            , indeterminate: false
+                        };
+                    }
+                    else {
+                        return {
+                            ...g
+                            , indeterminate: true
                         }
-                    else {return {...g
-                        ,indeterminate: true}
                     }
                 } else {
                     return g;
@@ -248,10 +261,10 @@ export default function Calculator() {
                 }
             })
         )
-        const ancestryTemp = 
+        const ancestryTemp =
             ancestry.map((e) => {
                 if (e.ancestry_group === newAncestryGroup.ancestry_group) {
-                    e.selected = newAncestryGroup.selected ? true:false
+                    e.selected = newAncestryGroup.selected ? true : false
                     return e;
                 } else {
                     return e;
@@ -259,21 +272,21 @@ export default function Calculator() {
             })
         setAncestry(ancestryTemp)
 
-        if(ancestryTemp.every((e) => e.selected === true)) {setAncestryAll(true)}
-        else {setAncestryAll(false)}
+        if (ancestryTemp.every((e) => e.selected === true)) { setAncestryAll(true) }
+        else { setAncestryAll(false) }
     };
 
     // 💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍
     const [marriage, setMarriage] = useState(marriageSupport);
     function handleMarriage(newMarriage) {
-        const marriageTemp = 
+        const marriageTemp =
             marriage.map((m) => {
-                    if (m.marriage === newMarriage.marriage) {
-                        return {...newMarriage, selected: !newMarriage.selected};
-                    } else {
-                        return m;
-                    }
-                })
+                if (m.marriage === newMarriage.marriage) {
+                    return { ...newMarriage, selected: !newMarriage.selected };
+                } else {
+                    return m;
+                }
+            })
         setMarriage(marriageTemp)
     };
 
@@ -282,41 +295,41 @@ export default function Calculator() {
 
 
     // Helper Functions
-    function resetter (formName, active) {
-        if(formName === 'race') {
+    function resetter(formName, active) {
+        if (formName === 'race') {
             setActiveEthnicityTab(1)
             setRaceAll(active)
             setRace(
                 race.map((r) => {
-                    return {...r, selected: active}
+                    return { ...r, selected: active }
                 })
             )
         }
-        else if(formName === 'ethnicity') {
+        else if (formName === 'ethnicity') {
             setActiveEthnicityTab(2)
             setEthnicityAll(active)
             setEthnicityGroup(
                 ethnicityGroup.map((e) => {
-                    return {...e, selected: active, indeterminate: false}
+                    return { ...e, selected: active, indeterminate: false }
                 })
             )
             setEthnicity(
                 ethnicity.map((e) => {
-                    return {...e, selected: active, indeterminate: false}
+                    return { ...e, selected: active, indeterminate: false }
                 })
             )
         }
-        else if(formName === 'ancestry') {
+        else if (formName === 'ancestry') {
             setActiveEthnicityTab(3)
             setAncestryAll(active)
             setAncestryGroup(
                 ancestryGroup.map((e) => {
-                    return {...e, selected: active, indeterminate: false}
+                    return { ...e, selected: active, indeterminate: false }
                 })
             )
             setAncestry(
                 ancestry.map((e) => {
-                    return {...e, selected: active, indeterminate: false}
+                    return { ...e, selected: active, indeterminate: false }
                 })
             )
         }
@@ -335,17 +348,14 @@ export default function Calculator() {
         setDatingPoolCount(newDatingPoolCount)
     };
 
-  
+
     useEffect(() => {
         let totalAgePop = 0; // Population size for all genders and entire age range.
 
         let datingPoolCountMenTemp = 0 // Selected gender and age range.
         let datingPoolCountWomenTemp = 0 // Selected gender and age range.
         let datingPoolCountBothTemp = 0; // Population size for selected age range and both genders.
-
         let datingPoolCountTemp = 0;
-
-
 
         // Gender Identity percent
         let menPercent = 0;
@@ -363,59 +373,130 @@ export default function Calculator() {
         let transgenderSexualityPercent = 0;
         let otherSexualityPercent = 0;
 
+        // Marrital Status percents for each gender
+        let menMarriagePercent = 0;
+        let womenMarriagePercent = 0;
+
         // Gender Identity count * Sexual Orientation percents for each gender identity
         let finalMenPop = 0;
         let finalWomenPop = 0;
         let finalBothPop = 0;
-        
 
-
+        // Ethnicity related percents
         let racePercent = 0;
         let ethnicityPercent = 0;
         let ancestryPercent = 0;
 
 
-        if(ageData != false) { // Wait for DataPull Component to finish first.
-            if(!gender.every((g) => g.selected === false)) {
+        if (ageData != false) { // Wait for DataPull Component to finish first.
+            if (!gender.every((g) => g.selected === false)) {
                 genderIdentityData.map(genderCount => {
                     gender.map(g => {
-                        if(g.selected === true && g.gender === genderCount.gender) {
-                            if(g.gender === "Men") {menPercent += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.gender === "Trans Men") {transMenPercent += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.gender === "Women") {womenPercent += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.gender === "Trans Women") {transWomenPercent += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.gender === "Transgender") {transgenderPercent += parseFloat(genderCount["pop_decimal"])}
-                            else if(g.gender === "Other") {otherPercent += parseFloat(genderCount["pop_decimal"])}
+                        if (g.selected === true && g.gender === genderCount.gender) {
+                            if (g.gender === "Men") { menPercent += parseFloat(genderCount["pop_decimal"]) }
+                            else if (g.gender === "Trans Men") { transMenPercent += parseFloat(genderCount["pop_decimal"]) }
+                            else if (g.gender === "Women") { womenPercent += parseFloat(genderCount["pop_decimal"]) }
+                            else if (g.gender === "Trans Women") { transWomenPercent += parseFloat(genderCount["pop_decimal"]) }
+                            else if (g.gender === "Transgender") { transgenderPercent += parseFloat(genderCount["pop_decimal"]) }
+                            else if (g.gender === "Other") { otherPercent += parseFloat(genderCount["pop_decimal"]) }
                         }
                     })
                 })
 
                 sexualityData.map(sexualityCount => {
                     sexuality.map(s => {
-                        if(s.selected === true && s.sexuality === sexualityCount.sexuality){
-                            switch(true){
-                            case(sexualityCount["menPercent"] !== null): menSexualityPercent += parseFloat(sexualityCount["menPercent"])
-                            case(sexualityCount["transMenPercent"] !== null): transMenSexualityPercent += parseFloat(sexualityCount["transMenPercent"])
-                            case(sexualityCount["womenPercent"] !== null): womenSexualityPercent += parseFloat(sexualityCount["womenPercent"])
-                            case(sexualityCount["transWomenPercent"] !== null): transWomenSexualityPercent += parseFloat(sexualityCount["transWomenPercent"])
-                            case(sexualityCount["transgenderPercent"] !== null): transgenderSexualityPercent += parseFloat(sexualityCount["transgenderPercent"])
-                            case(sexualityCount["otherPercent"] !== null): otherSexualityPercent += parseFloat(sexualityCount["otherPercent"])
-                            break
+                        if (s.selected === true && s.sexuality === sexualityCount.sexuality) {
+                            switch (true) {
+                                case (sexualityCount["menPercent"] !== null): menSexualityPercent += parseFloat(sexualityCount["menPercent"])
+                                case (sexualityCount["transMenPercent"] !== null): transMenSexualityPercent += parseFloat(sexualityCount["transMenPercent"])
+                                case (sexualityCount["womenPercent"] !== null): womenSexualityPercent += parseFloat(sexualityCount["womenPercent"])
+                                case (sexualityCount["transWomenPercent"] !== null): transWomenSexualityPercent += parseFloat(sexualityCount["transWomenPercent"])
+                                case (sexualityCount["transgenderPercent"] !== null): transgenderSexualityPercent += parseFloat(sexualityCount["transgenderPercent"])
+                                case (sexualityCount["otherPercent"] !== null): otherSexualityPercent += parseFloat(sexualityCount["otherPercent"])
+                                    break
                             }
+                        }
                     }
-                }
-            )
-        })
+                    )
+                })
+
 
                 ageData.map(ageCount => {
                     totalAgePop += parseInt(Object.values(ageCount)[1].replace(",", ""))
-                    if(ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]){
+                    if (ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]) {
                         datingPoolCountMenTemp += parseInt(Object.values(ageCount)[3].replace(",", ""))
                         datingPoolCountWomenTemp += parseInt(Object.values(ageCount)[2].replace(",", ""))
                         datingPoolCountBothTemp += parseInt(Object.values(ageCount)[1].replace(",", ""))
-                        
+
                     }
                 })
+
+                // These arrays hold every marital status selected and their respective age ranges and percents.
+                let menMarriageTemp = [];
+                let womenMarriageTemp = [];
+
+                marriageData.map(marriageCount => {
+                    marriage.map(m => {
+                        if (m.selected === true && marriageCount.marriage.includes(m.marriage)) {
+                            if (marriageCount.marriage.includes("Male")) {
+                                menMarriageTemp.push(marriageCount)
+                            }
+                            else { womenMarriageTemp.push(marriageCount) }
+                        }
+                    })
+                })
+                // Populate an array with every age value in the user defined age range.
+                let ageNumberRange = [];
+                for (var i = ageRange[0]; i <= ageRange[1]; i++) {
+                    ageNumberRange.push(i);
+                }
+                // * Need to update this function to also do the same for female*
+                (function () {
+                    let allMaritalPercents = [];
+                    // for each marital status in our single gender marital temp array
+                    menMarriageTemp.map(menMarriageCategory => {
+                        let maritalPercents = [];
+
+                        // console.log(menMarriageCategory)
+
+                        // for each age range for the marital status
+                        let ageRangeTemp = []; // Array of one age range marital percent per age that fell into user defined age range
+                        for (var [age, percent] of Object.entries(menMarriageCategory)) {
+                            let min = Number(age.split('-')[0]);
+                            let max = Number(age.split('-')[1]);
+                            let rangeTemp = { "ageRange": age, "count": 0 }
+                            
+                        // for each age in the user defined age range
+                            ageNumberRange.map(a => {
+                                if (a >= min && a <= max) { ageRangeTemp.push(parseFloat(percent)) }
+                            })
+
+                
+                    // console.log(allMaritalPercents)
+                                
+                    }
+                    console.log(ageRangeTemp)
+                    // Take an average for each marital status' age percents. 
+                    maritalPercents = maritalPercents.concat(ageRangeTemp)
+                    const sum = maritalPercents.reduce((a,c) => a + c, 0);
+                    const avg = sum / maritalPercents.length;
+
+                    console.log(sum, avg)
+
+                    allMaritalPercents = allMaritalPercents.concat(avg)
+
+                    })
+                    // Add up all of the averaged marital statuses
+                    const sum2 = allMaritalPercents.reduce((a,c) => a + c, 0);
+                    
+                    console.log(sum2)
+
+                }
+                    ())
+
+                // console.log(ageNumberRange)
+
+
 
                 womenSexualityPercent = womenSexualityPercent > 1 ? 1 : womenSexualityPercent
                 transWomenSexualityPercent = transWomenSexualityPercent > 1 ? 1 : transWomenSexualityPercent
@@ -430,20 +511,22 @@ export default function Calculator() {
                 finalBothPop = ((transgenderPercent * transgenderSexualityPercent) + (otherPercent * otherSexualityPercent))
 
 
+
+
                 datingPoolCountTemp = (
                     (datingPoolCountMenTemp * finalMenPop)
                     + (datingPoolCountWomenTemp * finalWomenPop)
                     + (datingPoolCountBothTemp * finalBothPop)
                 )
 
-                setGenderPercent(((datingPoolCountTemp/datingPoolCountBothTemp) * 100 ).toFixed(0) + '%')
-                setAgePercent(((datingPoolCountBothTemp/totalAgePop) * 100 ).toFixed(0) + '%')
+                setGenderPercent(((datingPoolCountTemp / datingPoolCountBothTemp) * 100).toFixed(0) + '%')
+                setAgePercent(((datingPoolCountBothTemp / totalAgePop) * 100).toFixed(0) + '%')
                 if (activeEthnicityTab === 1) { // Race tab active
                     setEthnicityPercent('-')
                     setAncestryPercent('-')
                     raceData.map(raceCount => {
                         race.map(r => {
-                            if(r.selected === true && r.race === raceCount.race) {
+                            if (r.selected === true && r.race === raceCount.race) {
                                 racePercent += parseFloat(raceCount["decimal"])
                             }
                         })
@@ -451,19 +534,19 @@ export default function Calculator() {
                     datingPoolCountTemp *= racePercent
                     setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
                     setRacePercent((racePercent * 100).toFixed(0) + '%')
-                    }
+                }
                 else if (activeEthnicityTab === 2) { // Ethnicity tab active
                     setRacePercent('-')
                     setAncestryPercent('-')
                     ethnicityData.map(ethnicityCount => {
                         ethnicity.map(e => {
-                            if(e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
+                            if (e.selected === true && e.ethnicity === ethnicityCount.ethnicity) {
                                 ethnicityPercent += parseFloat(ethnicityCount["decimal"])
                             }
                         })
                     })
-                        datingPoolCountTemp *= ethnicityPercent
-                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                    datingPoolCountTemp *= ethnicityPercent
+                    setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
                     setEthnicityPercent((ethnicityPercent * 100).toFixed(0) + '%')
                 }
                 else if (activeEthnicityTab === 3) { // Ancestry tab active
@@ -471,13 +554,13 @@ export default function Calculator() {
                     setEthnicityPercent('-')
                     ancestryData.map(ancestryCount => {
                         ancestry.map(a => {
-                            if(a.selected === true && a.ancestry === ancestryCount.ancestry) {
+                            if (a.selected === true && a.ancestry === ancestryCount.ancestry) {
                                 ancestryPercent += parseFloat(ancestryCount["decimal"])
                             }
                         })
                     })
-                        datingPoolCountTemp *= ancestryPercent
-                        setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
+                    datingPoolCountTemp *= ancestryPercent
+                    setDatingPoolCount(parseInt(datingPoolCountTemp).toLocaleString('en-US'))
                     setAncestryPercent((ancestryPercent * 100).toFixed(0) + '%')
                 }
             }
@@ -495,7 +578,7 @@ export default function Calculator() {
             datingPoolCountTemp = 0
             setDatingPoolCount(datingPoolCountTemp)
         }
-    }, [ ageData, gender, ageRange, race, ethnicity, ancestry, sexuality])
+    }, [ageData, gender, ageRange, race, ethnicity, ancestry, sexuality])
 
 
     // This state is used by the TabContext component that controls the menu tabs
@@ -506,108 +589,109 @@ export default function Calculator() {
 
     return (
         <div className="wrapper">
-        <div className="main-container">
-        <h1>{datingPoolCount} </h1>
+            <div className="main-container">
+                <h1>{datingPoolCount} </h1>
 
-            <DataPull onPull={handlePull}/>
+                <DataPull onPull={handlePull} />
 
-            <TabContext value={tabValue} >
-                
-            <Box sx={{ width: "100%", borderBottom: 1, borderColor: 'divider', display:"flex", justifyContent:"center" }}>
-                <TabList 
-                    onChange={handleChange} style={{ overflow: "hidden" }}
-                    variant="scrollable" scrollButtons={true} allowScrollButtonsMobile={true}  
-                    //TabIndicatorProps={{style: {background:'#89F0DD'}}}
-                    >
-                    <Tab value="1" icon={<WcIcon />} style={{ minWidth: 50
-                    // ,color:'#89F0DD'
-                }}label={
-                    <div>
-                    <p className="tabNameSmall">Orientation</p>
-                    <p className="kpiPercent">{genderPercent}</p>
-                    </div>
-                } />
-                    {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
-                    <Tab value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}
-                    label={
-                        <div>
-                        <p className="tabName">Age</p>
-                        <p className="kpiPercent">{agePercent}</p>
-                        </div>
-                    } />
-                    <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }}/>
-                    <Tab value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}
-                        label={
-                            <div>
-                            <p className="tabName"> Race </p>
-                            <p className="kpiPercent">{racePercent}</p>
-                            </div>
-                        } />
-            
-                    <Tab value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}
-                        label={
-                            <div>
-                            <p className="tabName"> Ethnicity </p>
-                            <p className="kpiPercent">{ethnicityPercent}</p>
-                            </div>}
+                <TabContext value={tabValue} >
+
+                    <Box sx={{ width: "100%", borderBottom: 1, borderColor: 'divider', display: "flex", justifyContent: "center" }}>
+                        <TabList
+                            onChange={handleChange} style={{ overflow: "hidden" }}
+                            variant="scrollable" scrollButtons={true} allowScrollButtonsMobile={true}
+                        //TabIndicatorProps={{style: {background:'#89F0DD'}}}
+                        >
+                            <Tab value="1" icon={<WcIcon />} style={{
+                                minWidth: 50
+                                // ,color:'#89F0DD'
+                            }} label={
+                                <div>
+                                    <p className="tabNameSmall">Orientation</p>
+                                    <p className="kpiPercent">{genderPercent}</p>
+                                </div>
+                            } />
+                            {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
+                            <Tab value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}
+                                label={
+                                    <div>
+                                        <p className="tabName">Age</p>
+                                        <p className="kpiPercent">{agePercent}</p>
+                                    </div>
+                                } />
+                            <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }} />
+                            <Tab value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}
+                                label={
+                                    <div>
+                                        <p className="tabName"> Race </p>
+                                        <p className="kpiPercent">{racePercent}</p>
+                                    </div>
+                                } />
+
+                            <Tab value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}
+                                label={
+                                    <div>
+                                        <p className="tabName"> Ethnicity </p>
+                                        <p className="kpiPercent">{ethnicityPercent}</p>
+                                    </div>}
                             />
-                    <Tab value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }}label={
-                            <div>
-                            <p className="tabName"> Ancestry </p>
-                            <p className="kpiPercent">{ancestryPercent}</p>
-                            </div>}
+                            <Tab value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }} label={
+                                <div>
+                                    <p className="tabName"> Ancestry </p>
+                                    <p className="kpiPercent">{ancestryPercent}</p>
+                                </div>}
                             />
-                    <Tab icon={<FilterVintageIcon />} label={
-                        <div style={{whiteSpace:"pre-line"}}>
-   <Typography style={{ }} variant="caption"> 
-          test
-        </Typography>
-        <br />
-        <Typography variant="title">
-          ❌🟩
-        </Typography>
-                        </div>
-                    }
-                     value="10" component="pre" style={{ minWidth: 50, whiteSpace: "pre-line" }}/>
-                </TabList>
-            </Box>
+                            <Tab icon={<FilterVintageIcon />} label={
+                                <div style={{ whiteSpace: "pre-line" }}>
+                                    <Typography style={{}} variant="caption">
+                                        test
+                                    </Typography>
+                                    <br />
+                                    <Typography variant="title">
+                                        ❌🟩
+                                    </Typography>
+                                </div>
+                            }
+                                value="10" component="pre" style={{ minWidth: 50, whiteSpace: "pre-line" }} />
+                        </TabList>
+                    </Box>
 
-                <TabPanel value="1" sx={{padding:"0"}}>
-                    <Gender activeGender={gender} onGenderClick={handleGender}
-                    activeSexuality={sexuality} onSexualityClick={handleSexuality} 
-                    activeMarriage={marriage} onMarriageClick={handleMarriage}
-                    />
-                </TabPanel>
-                <TabPanel value="2" sx={{padding:"0"}}>
-                    <Age activeGender={gender} ageRange={ageRange} onSlide={handleAge}/>
-                </TabPanel>
-                <TabPanel value="4" sx={{padding:"0"}}>            
-                    <Race activeRace={race} onRaceClick={handleRace} activeRaceAll={raceAll} resetter={resetter}/>
-                </TabPanel>
-                <TabPanel value="5" sx={{padding:"0"}}    >        
-                    <Ethnicity 
-                        activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity} 
-                        activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup} 
-                        activeEthnicityAll={ethnicityAll} resetter={resetter}
+                    <TabPanel value="1" sx={{ padding: "0" }}>
+                        <Gender activeGender={gender} onGenderClick={handleGender}
+                            activeSexuality={sexuality} onSexualityClick={handleSexuality}
+                            activeMarriage={marriage} onMarriageClick={handleMarriage}
                         />
-                </TabPanel>
-                <TabPanel value="6" sx={{padding:"0"}}    >        
-                    <Ancestry 
-                        activeAncestry={ancestry} onAncestryClick={handleAncestry} 
-                        activeAncestryGroup={ancestryGroup} onAncestryGroupClick={handleAncestryGroup} 
-                        activeAncestryAll={ancestryAll} resetter={resetter}
+                    </TabPanel>
+                    <TabPanel value="2" sx={{ padding: "0" }}>
+                        <Age activeGender={gender} ageRange={ageRange} onSlide={handleAge} />
+                    </TabPanel>
+                    <TabPanel value="4" sx={{ padding: "0" }}>
+                        <Race activeRace={race} onRaceClick={handleRace} activeRaceAll={raceAll} resetter={resetter} />
+                    </TabPanel>
+                    <TabPanel value="5" sx={{ padding: "0" }}    >
+                        <Ethnicity
+                            activeEthnicity={ethnicity} onEthnicityClick={handleEthnicity}
+                            activeEthnicityGroup={ethnicityGroup} onEthnicityGroupClick={handleEthnicityGroup}
+                            activeEthnicityAll={ethnicityAll} resetter={resetter}
                         />
-                </TabPanel>
-                <TabPanel value="10">            
-                    <Test activeGender={gender} onGenderClick={handleGender}/>
-                </TabPanel>
-                
-            </TabContext>
-            
+                    </TabPanel>
+                    <TabPanel value="6" sx={{ padding: "0" }}    >
+                        <Ancestry
+                            activeAncestry={ancestry} onAncestryClick={handleAncestry}
+                            activeAncestryGroup={ancestryGroup} onAncestryGroupClick={handleAncestryGroup}
+                            activeAncestryAll={ancestryAll} resetter={resetter}
+                        />
+                    </TabPanel>
+                    <TabPanel value="10">
+                        <Test activeGender={gender} onGenderClick={handleGender} />
+                    </TabPanel>
+
+                </TabContext>
+
 
             </div>
         </div>
-)
+    )
 
 };
 
