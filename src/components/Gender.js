@@ -123,7 +123,7 @@ export default function Gender({ activeGender, onGenderClick, activeSexuality, o
 
 
             <div className="genderContainer">
-            <p className="description">...whose marrital status is</p>
+            <p className="description">...whose marital status is</p>
 
             <div className="genderButtons">
 

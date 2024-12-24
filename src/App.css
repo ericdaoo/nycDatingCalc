@@ -68,6 +68,12 @@ p.source {
   width: 150px;
 }
 
+.kpi {
+  font-family: "Bellota Text", serif;
+  font-weight: 400;
+  font-style: normal;;
+}
+
 .genderButtons {
   /* min-width: 170px; */
   overflow:visible;

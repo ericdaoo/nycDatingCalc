@@ -35,10 +35,11 @@ import Test from "./test"
 
 export default function Calculator() {
 
-    document.addEventListener('DOMContentLoaded', function () { 
+    document.addEventListener('DOMContentLoaded', function () {
         let bodyBackgroundColor = "39ff14"
         // getComputedStyle(document.body).backgroundColor; 
-        document.getElementById('themeMetaTag').setAttribute('content', bodyBackgroundColor); });
+        document.getElementById('themeMetaTag').setAttribute('content', bodyBackgroundColor);
+    });
 
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
@@ -390,37 +391,44 @@ export default function Calculator() {
 
         if (ageData != false) { // Wait for DataPull Component to finish first.
             if (!gender.every((g) => g.selected === false)) {
-                genderIdentityData.map(genderCount => {
+                genderIdentityData.map(gData => {
                     gender.map(g => {
-                        if (g.selected === true && g.gender === genderCount.gender) {
-                            if (g.gender === "Men") { menPercent += parseFloat(genderCount["pop_decimal"]) }
-                            else if (g.gender === "Trans Men") { transMenPercent += parseFloat(genderCount["pop_decimal"]) }
-                            else if (g.gender === "Women") { womenPercent += parseFloat(genderCount["pop_decimal"]) }
-                            else if (g.gender === "Trans Women") { transWomenPercent += parseFloat(genderCount["pop_decimal"]) }
-                            else if (g.gender === "Transgender") { transgenderPercent += parseFloat(genderCount["pop_decimal"]) }
-                            else if (g.gender === "Other") { otherPercent += parseFloat(genderCount["pop_decimal"]) }
+                        if (g.selected === true && g.gender === gData.gender) {
+                            if (g.gender === "Men") { menPercent += parseFloat(gData["pop_decimal"]) }
+                            else if (g.gender === "Trans Men") { transMenPercent += parseFloat(gData["pop_decimal"]) }
+                            else if (g.gender === "Women") { womenPercent += parseFloat(gData["pop_decimal"]) }
+                            else if (g.gender === "Trans Women") { transWomenPercent += parseFloat(gData["pop_decimal"]) }
+                            else if (g.gender === "Transgender") { transgenderPercent += parseFloat(gData["pop_decimal"]) }
+                            else if (g.gender === "Other") { otherPercent += parseFloat(gData["pop_decimal"]) }
                         }
                     })
                 })
 
-                sexualityData.map(sexualityCount => {
+                sexualityData.map(sData => {
                     sexuality.map(s => {
-                        if (s.selected === true && s.sexuality === sexualityCount.sexuality) {
+                        if (s.selected === true && s.sexuality === sData.sexuality) {
                             switch (true) {
-                                case (sexualityCount["menPercent"] !== null): menSexualityPercent += parseFloat(sexualityCount["menPercent"])
-                                case (sexualityCount["transMenPercent"] !== null): transMenSexualityPercent += parseFloat(sexualityCount["transMenPercent"])
-                                case (sexualityCount["womenPercent"] !== null): womenSexualityPercent += parseFloat(sexualityCount["womenPercent"])
-                                case (sexualityCount["transWomenPercent"] !== null): transWomenSexualityPercent += parseFloat(sexualityCount["transWomenPercent"])
-                                case (sexualityCount["transgenderPercent"] !== null): transgenderSexualityPercent += parseFloat(sexualityCount["transgenderPercent"])
-                                case (sexualityCount["otherPercent"] !== null): otherSexualityPercent += parseFloat(sexualityCount["otherPercent"])
+                                case (sData["menPercent"] !== null): menSexualityPercent += parseFloat(sData["menPercent"])
+                                case (sData["transMenPercent"] !== null): transMenSexualityPercent += parseFloat(sData["transMenPercent"])
+                                case (sData["womenPercent"] !== null): womenSexualityPercent += parseFloat(sData["womenPercent"])
+                                case (sData["transWomenPercent"] !== null): transWomenSexualityPercent += parseFloat(sData["transWomenPercent"])
+                                case (sData["transgenderPercent"] !== null): transgenderSexualityPercent += parseFloat(sData["transgenderPercent"])
+                                case (sData["otherPercent"] !== null): otherSexualityPercent += parseFloat(sData["otherPercent"])
                                     break
                             }
                         }
                     }
                     )
                 })
+                // Ensure gender identity percents don't exceed 100%
+                womenSexualityPercent = womenSexualityPercent > 1 ? 1 : womenSexualityPercent
+                transWomenSexualityPercent = transWomenSexualityPercent > 1 ? 1 : transWomenSexualityPercent
+                menSexualityPercent = menSexualityPercent > 1 ? 1 : menSexualityPercent
+                transMenSexualityPercent = transMenSexualityPercent > 1 ? 1 : transMenSexualityPercent
+                transgenderSexualityPercent = transgenderSexualityPercent > 1 ? 1 : transgenderSexualityPercent
+                otherSexualityPercent = otherSexualityPercent > 1 ? 1 : otherSexualityPercent
 
-
+                // 🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂🎂
                 ageData.map(ageCount => {
                     totalAgePop += parseInt(Object.values(ageCount)[1].replace(",", ""))
                     if (ageCount.age >= ageRange[0] && ageCount.age <= ageRange[1]) {
@@ -431,6 +439,7 @@ export default function Calculator() {
                     }
                 })
 
+                // 💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍💍
                 // These arrays hold every marital status selected and their respective age ranges and percents.
                 let menMarriageTemp = [];
                 let womenMarriageTemp = [];
@@ -451,13 +460,12 @@ export default function Calculator() {
                     ageNumberRange.push(i);
                 }
                 // * Need to update this function to also do the same for female*
-                (function () {
+                let maritalCalc = (genderMaritalArray, genderVar) => {
+
                     let allMaritalPercents = [];
                     // for each marital status in our single gender marital temp array
-                    menMarriageTemp.map(menMarriageCategory => {
+                    genderMaritalArray.map(menMarriageCategory => {
                         let maritalPercents = [];
-
-                        // console.log(menMarriageCategory)
 
                         // for each age range for the marital status
                         let ageRangeTemp = []; // Array of one age range marital percent per age that fell into user defined age range
@@ -465,54 +473,51 @@ export default function Calculator() {
                             let min = Number(age.split('-')[0]);
                             let max = Number(age.split('-')[1]);
                             let rangeTemp = { "ageRange": age, "count": 0 }
-                            
-                        // for each age in the user defined age range
+
+                            // for each age in the user defined age range
                             ageNumberRange.map(a => {
                                 if (a >= min && a <= max) { ageRangeTemp.push(parseFloat(percent)) }
                             })
-
-                
-                    // console.log(allMaritalPercents)
-                                
-                    }
-                    console.log(ageRangeTemp)
-                    // Take an average for each marital status' age percents. 
-                    maritalPercents = maritalPercents.concat(ageRangeTemp)
-                    const sum = maritalPercents.reduce((a,c) => a + c, 0);
-                    const avg = sum / maritalPercents.length;
-
-                    console.log(sum, avg)
-
-                    allMaritalPercents = allMaritalPercents.concat(avg)
-
+                        }
+                        console.log(ageRangeTemp)
+                        // Take an average for each marital status' age percents. 
+                        maritalPercents = maritalPercents.concat(ageRangeTemp)
+                        const sum = maritalPercents.reduce((a, c) => a + c, 0);
+                        const avg = sum / maritalPercents.length;
+                        allMaritalPercents = allMaritalPercents.concat(avg)
                     })
                     // Add up all of the averaged marital statuses
-                    const sum2 = allMaritalPercents.reduce((a,c) => a + c, 0);
-                    
-                    console.log(sum2)
-
+                    const totalGenderSum = allMaritalPercents.reduce((a, c) => a + c, 0);
+                    console.log(totalGenderSum)
+                
+                    if(genderVar === "men") {
+                        menMarriagePercent = totalGenderSum
+                    }
+                    else if(genderVar === "women") {
+                        womenMarriagePercent = totalGenderSum
+                    }
                 }
-                    ())
+                maritalCalc(menMarriageTemp, "men")
+                maritalCalc(womenMarriageTemp, "women")
+                console.log(menMarriagePercent, womenMarriagePercent)
 
-                // console.log(ageNumberRange)
-
-
-
-                womenSexualityPercent = womenSexualityPercent > 1 ? 1 : womenSexualityPercent
-                transWomenSexualityPercent = transWomenSexualityPercent > 1 ? 1 : transWomenSexualityPercent
-                menSexualityPercent = menSexualityPercent > 1 ? 1 : menSexualityPercent
-                transMenSexualityPercent = transMenSexualityPercent > 1 ? 1 : transMenSexualityPercent
-                transgenderSexualityPercent = transgenderSexualityPercent > 1 ? 1 : transgenderSexualityPercent
-                otherSexualityPercent = otherSexualityPercent > 1 ? 1 : otherSexualityPercent
-
-
-                finalWomenPop = ((womenPercent * womenSexualityPercent) + (transWomenPercent * transWomenSexualityPercent))
-                finalMenPop = ((menPercent * menSexualityPercent) + (transMenPercent * transMenSexualityPercent))
-                finalBothPop = ((transgenderPercent * transgenderSexualityPercent) + (otherPercent * otherSexualityPercent))
-
-
+                // Combine gender identity, sexuality, and marital status percents
+                finalWomenPop = (
+                    ((womenPercent * womenSexualityPercent) + (transWomenPercent * transWomenSexualityPercent))
+                    * menMarriagePercent
+                )
+                finalMenPop = (
+                    ((menPercent * menSexualityPercent) + (transMenPercent * transMenSexualityPercent))
+                    * womenMarriagePercent
+                )
+                finalBothPop = (
+                    ((transgenderPercent * transgenderSexualityPercent) + (otherPercent * otherSexualityPercent))
+                    * ((menMarriagePercent + womenMarriagePercent) / 2)
+                )
 
 
+
+                // Use age data for each gender to multiply by gender identity, sexuality, and marital status percents to calculate final population count
                 datingPoolCountTemp = (
                     (datingPoolCountMenTemp * finalMenPop)
                     + (datingPoolCountWomenTemp * finalWomenPop)
@@ -578,7 +583,7 @@ export default function Calculator() {
             datingPoolCountTemp = 0
             setDatingPoolCount(datingPoolCountTemp)
         }
-    }, [ageData, gender, ageRange, race, ethnicity, ancestry, sexuality])
+    }, [ageData, gender, ageRange, race, ethnicity, ancestry, sexuality, marriage])
 
 
     // This state is used by the TabContext component that controls the menu tabs
@@ -590,7 +595,7 @@ export default function Calculator() {
     return (
         <div className="wrapper">
             <div className="main-container">
-                <h1>{datingPoolCount} </h1>
+                <h1 className="kpi">{datingPoolCount} </h1>
 
                 <DataPull onPull={handlePull} />
 
