@@ -6,8 +6,6 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 
-
-
 function createArray(n, m) {
   const result = [];
   for (let i = n; i <= m; i++) {
@@ -16,7 +14,7 @@ function createArray(n, m) {
   return result;
 }
 
-const testData = createArray(20, 64);
+const testData = createArray(146, 190);
 const range = [Math.min(...testData), Math.max(...testData)];
 // const range = [20,60]
 
@@ -30,8 +28,6 @@ const marks = [
     label: range[1],
   },
 ];
-
-
 
 
 function ValueLabelComponent(props) {
@@ -49,7 +45,7 @@ ValueLabelComponent.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
+const CustomHeightSlider = styled(Slider)(({ theme, activegender }) => ({
   height: 8,
   padding: '20px 0',
   '& .MuiSlider-thumb': {
@@ -57,13 +53,13 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
     width: 28,
     boxShadow: '0 2px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.02)',
     // backgroundColor: '#212121',
-    '&:hover': {
-      boxShadow: '0 0 0 10px rgba(58, 133, 137, 0.16)',
-    },
-    '&:before': {
-      boxShadow:
-        '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
-    },
+    // '&:hover': {
+    //   boxShadow: '0 0 0 10px rgba(58, 133, 137, 0.16)',
+    // },
+    // '&:before': {
+    //   boxShadow:
+    //     '0px 0px 1px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 1px 0px rgba(0,0,0,0.12)',
+    // },
   },
   '& .MuiSlider-thumb[data-index="0"]': {
     backgroundImage: "radial-gradient(circle, #ff835e 40%, #000000 0%,#ff835e 99%)"
@@ -77,16 +73,16 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
     top: -5,
     backgroundColor: 'unset',
     color: theme.palette.text.primary,
-    '&::before': {
-      display: 'none',
-    },
-    '& *': {
-      background: 'transparent',
-      color: '#000',
-      ...theme.applyStyles('dark', {
-        color: '#fff',
-      }),
-    },
+    // '&::before': {
+    //   display: 'none',
+    // },
+    // '& *': {
+    //   background: 'transparent',
+    //   color: '#000',
+    //   ...theme.applyStyles('dark', {
+    //     color: '#fff',
+    //   }),
+    // },
   },
   '& .MuiSlider-markLabel[data-index="0"]': {
     top: "15px",
@@ -118,10 +114,10 @@ const CustomAgeSlider = styled(Slider)(({ theme, activegender }) => ({
   // }),
 }));
 
-export default function Age({ ageRange, onSlide, activeGender }) {
-  const value = ageRange.slice()
-  // const [value, setValue] = React.useState(ageRange);
-  const minDistance = 3;
+export default function Height({ heightRange, onSlide, activeGender }) {
+  const value = heightRange.slice()
+  // const [value, setValue] = React.useState(heightRange);
+  const minDistance = 5;
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -130,7 +126,7 @@ export default function Age({ ageRange, onSlide, activeGender }) {
 
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
+        const clamped = Math.min(newValue[0], 200 - minDistance);
         onSlide([clamped, clamped + minDistance]);
       } else {
         const clamped = Math.max(newValue[1], minDistance);
@@ -142,28 +138,26 @@ export default function Age({ ageRange, onSlide, activeGender }) {
   };
 
   return (
-    <div className="genderContainer"> 
-            
-    <div className="ageContainer">
-    <p className="sliderDescription">Desired age range</p>
-    <Box sx={{ width: "100%", margin: "12px 0 0 0", padding: "12px 0 0 0"}}>
-      <CustomAgeSlider
-        // aria-label="ios slider"
-        // getAriaLabel={() => 'Age range'}
-        value={value}
-        min={range[0]}
-        max={range[1]}
-        marks={marks}
-        onChange={handleChange}
-        valueLabelDisplay="on"
-        disableSwap
-        activegender={activeGender}
-      />
-    </Box>
-    <div>
-                    <p className="source">Source: U.S. Census Bureau, 2023 American Community Survey, S0101</p>
-                </div>
-    </div>
+    <div className="genderContainer">
+
+      <div className="ageContainer">
+        <p className="sliderDescription">Desired height range</p>
+        <Box sx={{ width: "100%", margin: "12px 0 0 0", padding: "12px 0 0 0" }}>
+          <CustomHeightSlider
+            value={value}
+            min={range[0]}
+            max={range[1]}
+            marks={marks}
+            onChange={handleChange}
+            valueLabelDisplay="on"
+            disableSwap
+            activegender={activeGender}
+          />
+        </Box>
+        <div>
+          <p className="source">Source: 2021, CDC, National Health and Nutrition Examination Survey</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -15,12 +15,13 @@ export default function DataPull({ onPull }) {
                         '1845772824' // Gender & Age
                         ,'776831969' // Race
                         ,'1378955350' // Ethnicity
-                        // ,'1191707471' // Height
                         // ,'481252969' // Income
                         ,'1439753027' // Ancestry
                         ,'117376825' // Gender Identity
                         ,'1392669126' // Sexual Orientation
                         ,'21927911' // Marital Status
+                        ,'1191707471' // Height
+
         ]
 
         const responses = [];

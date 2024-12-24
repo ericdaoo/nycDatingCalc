@@ -20,6 +20,7 @@ import genderSupport from "../support_files/genderSupport.json"
 import Gender from "./Gender"
 import sexualitySupport from "../support_files/sexualitySupport.json"
 import Age from "./Age"
+import Height from "./Height"
 import Race from "./Race"
 import raceSupport from "../support_files/raceSupport.json"
 import Ethnicity from "./Ethnicity"
@@ -35,11 +36,11 @@ import Test from "./test"
 
 export default function Calculator() {
 
-    document.addEventListener('DOMContentLoaded', function () {
-        let bodyBackgroundColor = "39ff14"
-        // getComputedStyle(document.body).backgroundColor; 
-        document.getElementById('themeMetaTag').setAttribute('content', bodyBackgroundColor);
-    });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     let bodyBackgroundColor = "39ff14"
+    //     // getComputedStyle(document.body).backgroundColor; 
+    //     document.getElementById('themeMetaTag').setAttribute('content', bodyBackgroundColor);
+    // });
 
     // States are used to both assign values to UI elements in child components and for calculating dating pool size in parent component.
     const [ageData, setAgeData] = useState(false);
@@ -49,6 +50,7 @@ export default function Calculator() {
     const [ancestryData, setAncestryData] = useState();
     const [sexualityData, setSexualityData] = useState();
     const [marriageData, setMarriageData] = useState();
+    const [heightData, setHeightData] = useState();
     function handlePull(newData) {
         setAgeData(newData[0])
         setRaceData(newData[1])
@@ -57,6 +59,7 @@ export default function Calculator() {
         setGenderIdentityData(newData[4])
         setSexualityData(newData[5])
         setMarriageData(newData[6])
+        setHeightData(newData[7])
     };
 
     const [gender, setGender] = useState(genderSupport);
@@ -88,6 +91,11 @@ export default function Calculator() {
     const [ageRange, setAgeRange] = useState([30, 35]);
     function handleAge(newAgeRange) {
         setAgeRange(newAgeRange)
+    };
+
+    const [heightRange, setHeightRange] = useState([155, 175]);
+    function handleHeight(newHeightRange) {
+        setHeightRange(newHeightRange)
     };
 
     const [activeEthnicityTab, setActiveEthnicityTab] = useState(1)
@@ -294,7 +302,6 @@ export default function Calculator() {
 
 
 
-
     // Helper Functions
     function resetter(formName, active) {
         if (formName === 'race') {
@@ -336,6 +343,9 @@ export default function Calculator() {
         }
 
     }
+
+    // race mapping guide
+    // {a: asian, b: black, l: latino, m: middle eastern, n: native, p: pacific islander, w: white, t: two or more, o: other}
 
 
     // Dating pool calculation logic
@@ -595,20 +605,32 @@ export default function Calculator() {
     return (
         <div className="wrapper">
             <div className="main-container">
-                <h1 className="kpi">{datingPoolCount} </h1>
+                <div className="statusBar"></div>
+                <div className="header"> 
+                    <div className="kpiContainer">
+                        <h1 className="kpi">{datingPoolCount} </h1>
+                        <div className="kpiTextContainer">
+                    <h3 className="kpiText">New</h3>
+                    <h3 className="kpiText">Yorkers</h3>
+                        </div>
+                    </div>
+
+                </div>
 
                 <DataPull onPull={handlePull} />
 
                 <TabContext value={tabValue} >
 
-                    <Box sx={{ width: "100%", borderBottom: 1, borderColor: 'divider', display: "flex", justifyContent: "center" }}>
+                    <Box sx={{ width: "100%", height: "80px", borderBottom: 1, borderColor: 'divider', display: "flex", justifyContent: "center", background:  "linear-gradient( rgb(255, 255, 255), 80%, rgb(243, 243, 243))" }}>
                         <TabList
                             onChange={handleChange} style={{ overflow: "hidden" }}
                             variant="scrollable" scrollButtons={true} allowScrollButtonsMobile={true}
                         //TabIndicatorProps={{style: {background:'#89F0DD'}}}
                         >
                             <Tab value="1" icon={<WcIcon />} style={{
-                                minWidth: 50
+                                minWidth: 0
+                                // ,height: "30px"
+                                ,padding: '0px 12px 0 12px'
                                 // ,color:'#89F0DD'
                             }} label={
                                 <div>
@@ -617,15 +639,22 @@ export default function Calculator() {
                                 </div>
                             } />
                             {/* <Tab label="Orientation" value="1" icon={<WcIcon />}/> */}
-                            <Tab value="2" icon={<CakeIcon />} style={{ minWidth: 50 }}
+                            <Tab value="2" icon={<CakeIcon />} style={{ minWidth: 0,padding: '0px 12px 0 12px'}}
                                 label={
                                     <div>
                                         <p className="tabName">Age</p>
                                         <p className="kpiPercent">{agePercent}</p>
                                     </div>
                                 } />
-                            <Tab label="Height" value="3" icon={<HeightIcon />} style={{ minWidth: 50 }} />
-                            <Tab value="4" icon={<GroupsIcon />} style={{ minWidth: 50 }}
+                            <Tab value="3" icon={<HeightIcon />} style={{minWidth: 0,padding: '0px 12px 0 12px'}} 
+                            label={
+                                <div>
+                                    <p className="tabName"> Height </p>
+                                    <p className="kpiPercent">{racePercent}</p>
+                                </div>
+                            } />
+
+                            <Tab value="4" icon={<GroupsIcon />} style={{minWidth: 0,padding: '0px 12px 0 12px' }}
                                 label={
                                     <div>
                                         <p className="tabName"> Race </p>
@@ -633,14 +662,14 @@ export default function Calculator() {
                                     </div>
                                 } />
 
-                            <Tab value="5" icon={<PublicIcon />} style={{ minWidth: 50 }}
+                            <Tab value="5" icon={<PublicIcon />} style={{minWidth: 0,padding: '0px 12px 0 12px'}}
                                 label={
                                     <div>
                                         <p className="tabName"> Ethnicity </p>
                                         <p className="kpiPercent">{ethnicityPercent}</p>
                                     </div>}
                             />
-                            <Tab value="6" icon={<FilterVintageIcon />} style={{ minWidth: 50 }} label={
+                            <Tab value="6" icon={<FilterVintageIcon />} style={{minWidth: 0,padding: '0px 12px 0 12px'}} label={
                                 <div>
                                     <p className="tabName"> Ancestry </p>
                                     <p className="kpiPercent">{ancestryPercent}</p>
@@ -669,6 +698,11 @@ export default function Calculator() {
                     </TabPanel>
                     <TabPanel value="2" sx={{ padding: "0" }}>
                         <Age activeGender={gender} ageRange={ageRange} onSlide={handleAge} />
+                    </TabPanel>
+                    <TabPanel value="3" sx={{ padding: "0" }}>
+                        <Height 
+                        activeGender={gender} heightRange={heightRange} onSlide={handleHeight} 
+                        />
                     </TabPanel>
                     <TabPanel value="4" sx={{ padding: "0" }}>
                         <Race activeRace={race} onRaceClick={handleRace} activeRaceAll={raceAll} resetter={resetter} />

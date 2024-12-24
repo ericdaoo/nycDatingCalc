@@ -133,7 +133,7 @@ export default function Gender({ activeGender, onGenderClick, activeSexuality, o
                  ))}
             </div>
             <div>
-                    <p className="source">Source: U.S. Census Bureau, 2019-2023 American Community Survey</p>
+                    <p className="source">Source: U.S. Census Bureau, 2019-2023 American Community Survey, S1201 </p>
                 </div>
         </div>
 

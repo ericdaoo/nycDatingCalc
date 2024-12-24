@@ -1,42 +1,50 @@
 [
   {
-    "race": "Native American or Alaska Native",
-    "selected": true,
-    "color": "#FAEDA5"
-  },
-  {
     "race": "Asian",
     "selected": true,
     "color": "#ffb7c3"
+    ,"r": "a"
   },
   {
     "race": "Black or African American",
     "selected": true,
     "color": "#C5DCA0" 
+    ,"r": "b"
   },
   {
     "race": "Hispanic or Latino",
     "selected": true,
     "color": "#ffdab9"
+    ,"r": "l"
+  },
+  {
+    "race": "Native American or Alaska Native",
+    "selected": true,
+    "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "race": "Pacific Islander or Native Hawaiian",
     "selected": true,
     "color": "#89F0DD"
+    ,"r": "p"
   },
   {
     "race": "White",
     "selected": true,
     "color": "#b4e1ff"
+    ,"r": "w"
   },
   {
     "race": "Two or more races or Multiracial",
     "selected": true,
     "color": "#c5b4e3"
+    ,"r": "t"
   },
   {
     "race": "Some other race",
     "selected": true,
     "color": "#c5b4e3"
+    ,"r": "o"
   }
 ]

@@ -4,125 +4,146 @@
     "ethnicity_group": "Native American",
     "selected": true,
     "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "ethnicity": "American Indian",
     "ethnicity_group": "Native American",
     "selected": true,
     "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "ethnicity": "Central American Indian",
     "ethnicity_group": "Native American",
     "selected": true,
     "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "ethnicity": "South American Indian",
     "ethnicity_group": "Native American",
     "selected": true,
     "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "ethnicity": "Caribbean Indian",
     "ethnicity_group": "Native American",
     "selected": true,
     "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "ethnicity": "Mesoamerican Indian",
     "ethnicity_group": "Native American",
     "selected": true,
     "color": "#FAEDA5"
+    ,"r": "n"
   },
   {
     "ethnicity": "East Asian",
     "ethnicity_group": "Asian",
     "selected": true,
     "color": "#ffb7c3"
+    ,"r": "a"
   },
   {
     "ethnicity": "Central Asian",
     "ethnicity_group": "Asian",
     "selected": true,
     "color": "#ffb7c3"
+    ,"r": "a"
   },
   {
     "ethnicity": "South Asian",
     "ethnicity_group": "Asian",
     "selected": true,
     "color": "#ffb7c3"
+    ,"r": "a"
   },
   {
     "ethnicity": "Southeast Asian",
     "ethnicity_group": "Asian",
     "selected": true,
     "color": "#ffb7c3"
+    ,"r": "a"
   },
   {
     "ethnicity": "Polynesian",
     "ethnicity_group": "Pacific Islander",
     "selected": true,
     "color": "#89F0DD"
+    ,"r": "p"
   },
   {
     "ethnicity": "Micronesian",
     "ethnicity_group": "Pacific Islander",
     "selected": true,
     "color": "#89F0DD"
+    ,"r": "p"
   },
   {
     "ethnicity": "African American or Other Black",
     "ethnicity_group": "Black or African American",
     "selected": true,
     "color": "#C5DCA0"
+    ,"r": "b"
   },
   {
     "ethnicity": "Sub-Saharan African",
     "ethnicity_group": "Black or African American",
     "selected": true,
     "color": "#C5DCA0"
+    ,"r": "b"
   },
   {
     "ethnicity": "Middle Eastern or North African",
     "ethnicity_group": "Middle Eastern or North African",
     "selected": true,
     "color": "#66C684"
+    ,"r": "m"
   },
   {
     "ethnicity": "Caribbean",
     "ethnicity_group": "Other",
     "selected": true,
     "color": "#c5b4e3"
+    ,"r": "o"
   },
   {
     "ethnicity": "North Latin American",
     "ethnicity_group": "Latino",
     "selected": true,
     "color": "#ffdab9"
+    ,"r": "l"
   },
   {
     "ethnicity": "Central Latin American",
     "ethnicity_group": "Latino",
     "selected": true,
     "color": "#ffdab9"
+    ,"r": "l"
   },
   {
     "ethnicity": "South Latin American",
     "ethnicity_group": "Latino",
     "selected": true,
     "color": "#ffdab9"
+    ,"r": "l"
   },
   {
     "ethnicity": "Latin Caribbean",
     "ethnicity_group": "Latino",
     "selected": true,
     "color": "#ffdab9"
+    ,"r": "l"
   },
   {
     "ethnicity": "European",
     "ethnicity_group": "White",
     "selected": true,
     "color": "#b4e1ff"
+    ,"r": "w"
   }
 ]
